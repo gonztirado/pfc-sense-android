@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.celulabs.pfcsense.ble.sensortag"
+    package="com.celulabs.pfcsense.controller.ble.sensortag"
     android:versionCode="1"
     android:versionName="0.1.0" >
 
@@ -25,15 +25,15 @@
         android:icon="@drawable/sense_icon"
         android:label="@string/app_name" 
         android:theme="@android:style/Theme.Holo.Light"
-        android:name="com.celulabs.pfcsense.ble.sensortag.SensorTagApplicationClass" >
+        android:name="com.celulabs.pfcsense.controller.ble.sensortag.SensorTagApplicationClass" >
         <service
-            android:name="com.celulabs.pfcsense.ble.common.BluetoothLeService"
+            android:name="com.celulabs.pfcsense.controller.ble.common.BluetoothLeService"
             android:enabled="true" />
         <service android:name="org.eclipse.paho.android.service.MqttService"
             android:enabled="true" />
 
         <activity
-            android:name="com.celulabs.pfcsense.ble.sensortag.MainActivity"
+            android:name="com.celulabs.pfcsense.controller.ble.sensortag.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="unspecified" android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
@@ -44,28 +44,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.celulabs.pfcsense.ble.sensortag.DeviceActivity"
-            android:parentActivityName="com.celulabs.pfcsense.ble.sensortag.MainActivity"
+            android:name="com.celulabs.pfcsense.controller.ble.sensortag.DeviceActivity"
+            android:parentActivityName="com.celulabs.pfcsense.controller.ble.sensortag.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" 
             android:screenOrientation="unspecified" />
         <activity
-            android:name="com.celulabs.pfcsense.ble.sensortag.FwUpdateActivity"
-            android:parentActivityName="com.celulabs.pfcsense.ble.sensortag.DeviceActivity"
+            android:name="com.celulabs.pfcsense.controller.ble.sensortag.FwUpdateActivity"
+            android:parentActivityName="com.celulabs.pfcsense.controller.ble.sensortag.DeviceActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" 
             android:screenOrientation="unspecified"/>
         <activity
-            android:name="com.celulabs.pfcsense.ble.sensortag.FwUpdateActivity_CC26xx"
-            android:parentActivityName="com.celulabs.pfcsense.ble.sensortag.DeviceActivity"
+            android:name="com.celulabs.pfcsense.controller.ble.sensortag.FwUpdateActivity_CC26xx"
+            android:parentActivityName="com.celulabs.pfcsense.controller.ble.sensortag.DeviceActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="unspecified"/>
         <activity
-            android:name="com.celulabs.pfcsense.ble.sensortag.FileActivity"
-            android:parentActivityName="com.celulabs.pfcsense.ble.sensortag.FwUpdateActivity"
+            android:name="com.celulabs.pfcsense.controller.ble.sensortag.FileActivity"
+            android:parentActivityName="com.celulabs.pfcsense.controller.ble.sensortag.FwUpdateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" 
             android:screenOrientation="unspecified" />
         <activity
-            android:name="com.celulabs.pfcsense.ble.sensortag.PreferencesActivity"
-            android:parentActivityName="com.celulabs.pfcsense.ble.sensortag.DeviceActivity"
+            android:name="com.celulabs.pfcsense.controller.ble.sensortag.PreferencesActivity"
+            android:parentActivityName="com.celulabs.pfcsense.controller.ble.sensortag.DeviceActivity"
             android:screenOrientation="unspecified"
             android:configChanges="orientation|screenSize|keyboardHidden" 
             android:label="Preferences"/>

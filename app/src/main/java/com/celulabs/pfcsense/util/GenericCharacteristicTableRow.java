@@ -58,8 +58,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.UUID;
 
-import com.celulabs.pfcsense.ble.common.GattInfo;
-import com.celulabs.pfcsense.ble.sensortag.R;
+import com.celulabs.pfcsense.controller.ble.common.GattInfo;
+import com.celulabs.pfcsense.controller.ble.sensortag.R;
 
 import android.view.Display;
 import android.view.View;
