@@ -69,7 +69,6 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -81,7 +80,6 @@ import com.celulabs.pfcsense.ble.common.BleDeviceInfo;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.HCIDefines;
 import com.celulabs.pfcsense.ble.common.HelpView;
-import com.celulabs.pfcsense.model.SensorData;
 import com.celulabs.pfcsense.util.CustomToast;
 
 import java.io.File;
@@ -89,7 +87,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-// import android.util.Log;
 
 public class MainActivity extends ViewPagerActivity {
 	// Log
@@ -163,11 +160,6 @@ public class MainActivity extends ViewPagerActivity {
 		mFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 		mFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
 		mFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
-
-		List<SensorData> sensorDataList = SensorData.listAll(SensorData.class);
-		for (SensorData data: sensorDataList) {
-			Log.d("SENSOR", "data: " + data.getId());
-		}
     }
 
 
