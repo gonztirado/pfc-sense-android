@@ -54,20 +54,21 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.util.Log;
 
+import com.celulabs.pfcsense.controller.SensorDataController;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
 import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
 import com.celulabs.pfcsense.util.Point3D;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SensorTagAmbientTemperatureProfile extends GenericBluetoothProfile {
 	public SensorTagAmbientTemperatureProfile(Context con,BluetoothDevice device,BluetoothGattService service,BluetoothLeService controller) {
@@ -138,11 +139,16 @@ public class SensorTagAmbientTemperatureProfile extends GenericBluetoothProfile 
         byte[] value = c.getValue();
 		if (c.equals(this.dataC)){
 			Point3D v = Sensor.IR_TEMPERATURE.convert(value);
+            double temperatureValue = v.x;
+
 			if (this.tRow.config == false) { 
-				if ((this.isEnabledByPrefs("imperial")) == true) this.tRow.value.setText(String.format("%.1f'F", (v.x * 1.8) + 32));
-				else this.tRow.value.setText(String.format("%.1f'C", v.x));
+				if ((this.isEnabledByPrefs("imperial")) == true) this.tRow.value.setText(String.format("%.1f'F", (temperatureValue * 1.8) + 32));
+				else this.tRow.value.setText(String.format("%.1f'C", temperatureValue));
 			}
-			this.tRow.sl1.addValue((float)v.x);
+			this.tRow.sl1.addValue((float)temperatureValue);
+
+            /* Añadimos valor de temperatura al controlador */
+            SensorDataController.getInstance().addSensorValue(temperatureValue);
 		}
 	}
 	public static boolean isCorrectService(BluetoothGattService service) {

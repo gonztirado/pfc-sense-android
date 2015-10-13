@@ -54,9 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.btsig.profiles;
 
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
@@ -67,6 +64,9 @@ import android.widget.TableRow;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
+
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class DeviceInformationServiceProfile extends GenericBluetoothProfile {
 	private static final String dISService_UUID = "0000180a-0000-1000-8000-00805f9b34fb";

@@ -54,7 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -69,11 +68,12 @@ import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.util.CustomToast;
+import com.orm.SugarApp;
 
 /**
  * Created by ole on 20/04/15.
  */
-public class SensorTagApplicationClass extends Application{
+public class SensorTagApplicationClass extends SugarApp {
 
     private static final int REQ_ENABLE_BT = 0;
     public boolean mBtAdapterEnabled = false;
