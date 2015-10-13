@@ -93,10 +93,10 @@ public class MainActivity extends ViewPagerActivity {
 	// private static final String TAG = "MainActivity";
 
 	// URLs
-	private static final Uri URL_FORUM = Uri
-	    .parse("http://e2e.ti.com/support/low_power_rf/default.aspx?DCMP=hpa_hpa_community&HQS=NotApplicable+OT+lprf-forum");
-	private static final Uri URL_STHOME = Uri
-	    .parse("http://www.ti.com/ww/en/wireless_connectivity/sensortag/index.shtml?INTC=SensorTagGatt&HQS=sensortag");
+	private static final Uri URL_CODE_REPOSITORY = Uri
+			.parse("https://bitbucket.org/celulabs/pfc-sense-android");
+	private static final Uri URL_PROJECT_THOME = Uri
+			.parse("https://www.gitbook.com/read/book/gonztirado/pfc-sense-doc?license=62b146792aaf");
 
 	// Requests to other activities
 	private static final int REQ_ENABLE_BT = 0;
@@ -150,11 +150,11 @@ public class MainActivity extends ViewPagerActivity {
 
 		// Create the fragments and add them to the view pager and tabs
 		mScanView = new ScanView();
-		mSectionsPagerAdapter.addSection(mScanView, "BLE Device List");
+		mSectionsPagerAdapter.addSection(mScanView, "Lista de sensores");
 		
 		HelpView hw = new HelpView();
 		hw.setParameters("help_scan.html", R.layout.fragment_help, R.id.webpage);
-		mSectionsPagerAdapter.addSection(hw, "Help");
+		mSectionsPagerAdapter.addSection(hw, "Ayuda");
 
 		// Register the BroadcastReceiver
 		mFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
@@ -194,10 +194,10 @@ public class MainActivity extends ViewPagerActivity {
 			onBluetooth();
 			break;
 		case R.id.opt_e2e:
-			onUrl(URL_FORUM);
+			onUrl(URL_CODE_REPOSITORY);
 			break;
 		case R.id.opt_sthome:
-			onUrl(URL_STHOME);
+			onUrl(URL_PROJECT_THOME);
 			break;
 		case R.id.opt_license:
 			onLicense();
@@ -350,11 +350,11 @@ public class MainActivity extends ViewPagerActivity {
 		setBusy(true);
 		mBluetoothDevice = mDeviceInfoList.get(pos).getBluetoothDevice();
 		if (mConnIndex == NO_DEVICE) {
-			mScanView.setStatus("Connecting");
+			mScanView.setStatus("Conectando");
 			mConnIndex = pos;
 			onConnect();
 		} else {
-			mScanView.setStatus("Disconnecting");
+			mScanView.setStatus("Desconectando");
 			if (mConnIndex != NO_DEVICE) {
 				mBluetoothLeService.disconnect(mBluetoothDevice.getAddress());
 			}
@@ -440,9 +440,9 @@ public class MainActivity extends ViewPagerActivity {
 		mDeviceInfoList.add(device);
 		mScanView.notifyDataSetChanged();
 		if (mNumDevs > 1)
-			mScanView.setStatus(mNumDevs + " devices");
+			mScanView.setStatus(mNumDevs + " sensores");
 		else
-			mScanView.setStatus("1 device");
+			mScanView.setStatus("1 sensor");
 	}
 
 	private boolean deviceInfoExists(String address) {

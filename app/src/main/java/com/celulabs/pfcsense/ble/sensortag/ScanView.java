@@ -54,14 +54,11 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-// import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +73,10 @@ import android.widget.TextView;
 import com.celulabs.pfcsense.ble.common.BleDeviceInfo;
 import com.celulabs.pfcsense.util.CustomTimer;
 import com.celulabs.pfcsense.util.CustomTimerCallback;
+
+import java.util.List;
+
+// import android.util.Log;
 
 public class ScanView extends Fragment {
   // private static final String TAG = "ScanView";
@@ -179,16 +180,16 @@ public class ScanView extends Fragment {
     if (scanning) {
       // Indicate that scanning has started
       mScanTimer = new CustomTimer(null, SCAN_TIMEOUT, mPgScanCallback);
-      mBtnScan.setText("Stop");
+      mBtnScan.setText("Parar");
       mBtnScan.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_cancel, 0);
       mStatus.setTextAppearance(mContext, R.style.statusStyle_Busy);
-      mStatus.setText("Scanning...");
+      mStatus.setText("Escaneando...");
       mEmptyMsg.setText(R.string.nodevice);
       mActivity.updateGuiState();
     } else {
       // Indicate that scanning has stopped
       mStatus.setTextAppearance(mContext, R.style.statusStyle_Success);
-      mBtnScan.setText("Scan");
+      mBtnScan.setText("Escanear");
       mBtnScan.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_refresh, 0);
       mEmptyMsg.setText(R.string.scan_advice);
       mActivity.setProgressBarIndeterminateVisibility(false);
