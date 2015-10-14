@@ -218,21 +218,21 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 			{
 				setVisibility(View.INVISIBLE);
 				setId(102);
-				setText("Sensor state");
+				setText("Sensor activado");
 			}
 		};
 		this.periodLegend = new TextView(con) {
 			{
 				setVisibility(View.INVISIBLE);
 				setId(103);
-				setText("Sensor period");
+				setText("Periodo");
 			}
 		};
 		this.calibrateButton = new Button(con) {
 			{
 				setVisibility(View.INVISIBLE);
 				setId(104);
-				setText("Calibrate");
+				setText("Calibración");
 			}
 		};
 		
@@ -527,7 +527,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		Log.d("GenericBluetoothProfile", "Period changed : " + progress);
-		this.periodLegend.setText("Sensor period (currently : " + ((progress * 10) + periodMinVal) + "ms)");
+		this.periodLegend.setText("Periodo actualización (actualmente: " + ((progress * 10) + periodMinVal) + "ms)");
 	}
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {

@@ -93,8 +93,8 @@ public class SensorTagAmbientTemperatureProfile extends GenericBluetoothProfile 
 		this.tRow.setIcon(this.getIconPrefix(), this.dataC.getUuid().toString(),"temperature");
 		
 		//this.tRow.title.setText(GattInfo.uuidToName(UUID.fromString(this.dataC.getUuid().toString())));
-		this.tRow.title.setText("Ambient Temperature Data");
-		this.tRow.uuidLabel.setText(this.dataC.getUuid().toString());
+        this.tRow.title.setText("Temperatura");
+        this.tRow.uuidLabel.setText(this.dataC.getUuid().toString());
 		this.tRow.value.setText("0.0'C");
 		this.tRow.periodMinVal = 200;
 		this.tRow.periodBar.setMax(255 - (this.tRow.periodMinVal / 10));

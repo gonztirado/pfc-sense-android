@@ -20,7 +20,11 @@
     <item uuid="0xAA12" descr="Write &quot;01&quot; to select range 2G, &quot;02&quot; for 4G, &quot;03&quot; for 8G, &quot;00&quot; disable sensor">Accelerometer Config</item>
     <item uuid="0xAA13" descr="Period = [Input*10] ms, (lower limit 100ms), default 1000 ms">Accelerometer Period</item>
     <item uuid="0xAA20">Humidity Service</item>
-    <item uuid="0xAA21" icon="humidity" descr="TempLSB:TempMSB:HumidityLSB:HumidityMSB">Humidity Data</item>
+    <item
+        uuid="0xAA21"
+        icon="humidity"
+        descr="TempLSB:TempMSB:HumidityLSB:HumidityMSB">Humedad
+    </item>
     <item uuid="0xAA22" descr="Write &quot;01&quot; to start measurements, &quot;00&quot; to stop">Humidity Config</item>
     <item uuid="0xAA23" descr="Period = [Input*10] ms, (lower limit 100 ms), default 1000 ms">Humidity Period</item>
     <item uuid="0xAA30">Magnetometer Service</item>
@@ -28,7 +32,11 @@
     <item uuid="0xAA32" descr="Write &quot;01&quot; to start Sensor and Measurements, &quot;00&quot; to put to sleep">Magnetometer Config</item>
     <item uuid="0xAA33" descr="Period = [Input*10]ms (lower limit 100ms), default 2000ms">Magnetometer Period</item>
     <item uuid="0xAA40">Barometer Service</item>
-    <item uuid="0xAA41" icon="barometer" descr="TempLSB:TempMSB:PressureLSB:PressureMSB">Barometer Data</item>
+    <item
+        uuid="0xAA41"
+        icon="barometer"
+        descr="TempLSB:TempMSB:PressureLSB:PressureMSB">Barómetro
+    </item>
     <item uuid="0xAA42" descr="Write &quot;01&quot; to start Sensor and Measurements, &quot;00&quot; to put to sleep, &quot;02&quot; to read calibration values from sensor">Barometer Configuration</item>
     <item descr="When write &quot;02&quot; to Barometer conf. has been issued, the calibration values is found here." uuid="0xAA43">Barometer Calibration</item>
     <item uuid="0xAA44" descr="Period = [Input*10] ms, (lower limit 100 ms), default 1000 ms">Barometer Period</item>
@@ -40,7 +48,10 @@
     <item uuid="0xAA61" descr="Self-test results (high bit indicates PASSED): Bit 0:IR temp, 1:Humidity, 2:Magnetometer, 3:accelerometer, 4:Barometer, 5:Gyroscope">Test Data</item>
     <item uuid="0xAA62" descr="bit 7: enable test mode; bit 0-1 LED bit mask">Test Config</item>
     <item uuid="0xAA70">Luxometer Service</item>
-    <item uuid="0xAA71" icon="lightsensor">Luxometer Data</item>
+    <item
+        uuid="0xAA71"
+        icon="lightsensor">Luxómetro
+    </item>
     <item uuid="0xAA72">Luxometer Config</item>
     <item uuid="0xAA80">Motion Service</item>
     <item uuid="0xAA81" icon="motion">Motion Data</item>

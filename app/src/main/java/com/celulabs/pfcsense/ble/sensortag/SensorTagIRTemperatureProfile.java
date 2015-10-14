@@ -89,8 +89,8 @@ import java.util.Map;
 			this.tRow.sl1.autoScale = true;
 			this.tRow.sl1.autoScaleBounceBack = true;
 			this.tRow.setIcon(this.getIconPrefix(), this.dataC.getUuid().toString());
-			
-			this.tRow.title.setText("IR Temperature Data");
+
+			this.tRow.title.setText("Temperatura IR");
 			this.tRow.uuidLabel.setText(this.dataC.getUuid().toString());
 			this.tRow.value.setText("0.0'C");
 			this.tRow.periodMinVal = 200;

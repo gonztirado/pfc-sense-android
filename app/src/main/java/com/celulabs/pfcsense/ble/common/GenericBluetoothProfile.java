@@ -205,7 +205,7 @@ public class GenericBluetoothProfile {
             if (this.periodC != null)
                 printError("Sensor period failed: ",this.periodC,error);
         }
-		this.tRow.periodLegend.setText("Sensor period (currently : " + period + "ms)");
+		this.tRow.periodLegend.setText("Periodo actualización (actualmente : " + period + "ms)");
 	}
     public Map<String,String> getMQTTMap() {
         return null;
