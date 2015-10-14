@@ -19,37 +19,35 @@
     <h1>Ayuda de vista de escaneado</h1>
 
     <p>
-        Provided that the <b>Bluetooth Adapter</b> is available and turned on and Bluetooth low
-        energy supported on the device
-        (the application will request to turn the adapter on if detected off at start-up), the <b>BLE
-        SensorTag App</b>
-        will start device discovery (scanning) automatically. Scanning will stop when any of the
-        following conditions is met:
+        Hay que tener en cuenta que la <b>Configuración Bluetooth</b> debe estar disponible y
+        activada y el protocólo Bluetooth Low Energy debe estar soportado en el terminal (la
+        aplicación hace una petición para activar el Bluetooth en el arranque).
+        Los sensores <b>Texas Instruments Sensor Tag</b> arrancan con el modo 'Discovery'
+        (escaneables) automáticamente. El escaneado parará cuando se cumpla algunas de las
+        siguientes condiciones:
     </p>
+
     <ul>
-        <li><b>Stop</b> button tapped</b></li>
-        <li>A <b>device</b> in the list tapped</li>
-        <li><b>Ten seconds</b> elapsed since scanning started</li>
+        <li>Se pulse el botón <b>Parar</b></li>
+        <li>Se pulse un <b>Sensor</b> de la lista</li>
+        <li>Hayan pasado <b>diez segundos</b> desde el comienzo del escaneo</li>
     </ul>
+
     <p>
-        Scanning can be restarted any time by tapping the <b>Scan</b> button. During scanning
-        Received Signal Strength Indicator (RSSI) values are continuously updated. Note that
-        some devices do not provide continuous scan results (Nexus 4, Nexus 7 2013), on these
-        devices the RSSI value will appear only once.
-        When a device in the list is selected by the user, the application will attempt to connect
-        to it. If the connection succeeds,
-        the <u>Device View</u> will be launched, and this is where data from the enabled sensors are
-        displayed. If connection times out an error message
-        is displayed. This will happen when the SensorTag doesn't advertise, so always make sure it
-        is advertising by pushing the side button on the SensorTag
-        (this button toggles advertising).
+        El escaneo se puede reiniciar en cualquier momento volviendo a pulsar el botón
+        <b>Escanear</b>.
+        Cuando un sensor de la lista es seleccionado por el usuario, la aplicación intentará
+        conectarse con el mismo. Si la conexión tiene éxito, la vista <u>Device View</u> será
+        lanzada y se mostrarán todos los sensores disponibles.
+        Si ocurre un error durante la conexión un mensaje de error es mostrado. Esto pasará si el
+        sensor no está en modo 'Discovery' en el momento de la conexión, así que es recomendable
+        pulsar sobre el botón de activación del sensor antes de conectarse a él.
     </p>
 
     <p>
-        The options menu gives direct access to the SensorTag web page, and to TI's e2e forum. The
-        Bluetooth settings dialog can also
-        be accessed from here. There is also a brief About dialog with information about the
-        SensorTag, the Android device name and the Android build.
+        En el menú de opciones se da también acceso directo al repositorio de código y
+        a la memoria del proyecto. La configuración Bluetooth del terminal es accesible desde
+        el mismo menú, además de la información de versión y licencia de la aplicación.
     </p>
 </div>
 
