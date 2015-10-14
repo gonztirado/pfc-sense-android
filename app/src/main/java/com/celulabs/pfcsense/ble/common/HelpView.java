@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 public class HelpView extends Fragment {
-  private String mFile = "about.html";
+  private String mFile = "";
   private int mIdFragment;
   private int mIdWebPage;
 
