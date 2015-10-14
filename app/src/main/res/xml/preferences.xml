@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:example="http://schemas.android.com/apk/res/com.ti.sensortag" >
-    
-    <PreferenceCategory android:title="Units" >
-        
-        <!-- 
-	        Checkboxes have keys that match (with a simple transformation) the enum names in Sensor.java for easy
-	        decoding/encoding between java code and xml. 
-        -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Unidades">
         <CheckBoxPreference
             android:key="pref_imperial"
-            android:summary="Turn imperial units on or off."
+            android:summary="Acvivar unidades imperiales"
             android:defaultValue="false"
             android:persistent="true"
-            android:title="Imperial units" />
+            android:title="Unidades Imperiales" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Conexión">
         <CheckBoxPreference 
             android:key="pref_keepAlive"
-            android:summary="Keep connection alive 20 seconds on app pause"
+            android:summary="Mantiene la conexión activa durante 20 segundos tras pausar la app"
             android:defaultValue="true"
             android:persistent="true"
             android:title="Keep-Alive" />

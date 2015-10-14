@@ -1,78 +1,5 @@
-/**************************************************************************************************
- Filename:       GenericCharacteristicTableRow.java
- Revised:        $Date: Wed Apr 22 13:01:34 2015 +0200$
- Revision:       $Revision: 599e5650a33a4a142d060c959561f9e9b0d88146$
+package com.celulabs.pfcsense.ble.util;
 
- Copyright (c) 2013 - 2015 Texas Instruments Incorporated
-
- All rights reserved not granted herein.
- Limited License.
-
- Texas Instruments Incorporated grants a world-wide, royalty-free,
- non-exclusive license under copyrights and patents it now or hereafter
- owns or controls to make, have made, use, import, offer to sell and sell ("Utilize")
- this software subject to the terms herein.  With respect to the foregoing patent
- license, such license is granted  solely to the extent that any such patent is necessary
- to Utilize the software alone.  The patent license shall not apply to any combinations which
- include this software, other than combinations with devices manufactured by or for TI ('TI Devices').
- No hardware patent is licensed hereunder.
-
- Redistributions must preserve existing copyright notices and reproduce this license (including the
- above copyright notice and the disclaimer and (if applicable) source code license limitations below)
- in the documentation and/or other materials provided with the distribution
-
- Redistribution and use in binary form, without modification, are permitted provided that the following
- conditions are met:
-
- * No reverse engineering, decompilation, or disassembly of this software is permitted with respect to any
- software provided in binary form.
- * any redistribution and use are licensed by TI for use only with TI Devices.
- * Nothing shall obligate TI to provide you with source code for the software licensed and provided to you in object code.
-
- If software source code is provided to you, modification and redistribution of the source code are permitted
- provided that the following conditions are met:
-
- * any redistribution and use of the source code, including any resulting derivative works, are licensed by
- TI for use only with TI Devices.
- * any redistribution and use of any object code compiled from the source code and any resulting derivative
- works, are licensed by TI for use only with TI Devices.
-
- Neither the name of Texas Instruments Incorporated nor the names of its suppliers may be used to endorse or
- promote products derived from this software without specific prior written permission.
-
- DISCLAIMER.
-
- THIS SOFTWARE IS PROVIDED BY TI AND TI'S LICENSORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
- BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- IN NO EVENT SHALL TI AND TI'S LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
- OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- POSSIBILITY OF SUCH DAMAGE.
-
-
- **************************************************************************************************/
-package com.celulabs.pfcsense.util;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.UUID;
-
-import com.celulabs.pfcsense.ble.common.GattInfo;
-import com.celulabs.pfcsense.ble.sensortag.R;
-
-import android.view.Display;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -87,7 +14,26 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Display;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.celulabs.pfcsense.ble.common.GattInfo;
+import com.celulabs.pfcsense.ble.sensortag.R;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.UUID;
 
 public class GenericCharacteristicTableRow extends TableRow implements View.OnClickListener, Animation.AnimationListener, SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
 	//Normal cell operation : Show data contents
@@ -101,25 +47,25 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 	protected final RelativeLayout rowLayout;
 	public int iconSize = 150;
 	public boolean config;
-	
+
 	//Configuration operation : Show configuration contents
 	public final Switch onOff;
 	public final SeekBar periodBar;
 	public final TextView onOffLegend;
 	public final TextView periodLegend;
 	public final Button calibrateButton;
-	public final static String ACTION_PERIOD_UPDATE = "com.example.ti.util.ACTION_PERIOD_UPDATE";
-	public final static String ACTION_ONOFF_UPDATE = "com.example.ti.util.ACTION_ONOFF_UPDATE";
-	public final static String ACTION_CALIBRATE = "com.example.ti.util.ACTION_CALIBRATE";
-	public final static String EXTRA_SERVICE_UUID = "com.example.ti.util.EXTRA_SERVICE_UUID";
-	public final static String EXTRA_PERIOD = "com.example.ti.util.EXTRA_PERIOD";
-	public final static String EXTRA_ONOFF = "com.example.ti.util.EXTRA_ONOFF";
+	public final static String ACTION_PERIOD_UPDATE = "com.celulabs.pfcsense.util.ACTION_PERIOD_UPDATE";
+	public final static String ACTION_ONOFF_UPDATE = "com.celulabs.pfcsense.util.ACTION_ONOFF_UPDATE";
+	public final static String ACTION_CALIBRATE = "com.celulabs.pfcsense.util.ACTION_CALIBRATE";
+	public final static String EXTRA_SERVICE_UUID = "com.celulabs.pfcsense.util.EXTRA_SERVICE_UUID";
+	public final static String EXTRA_PERIOD = "com.celulabs.pfcsense.util.EXTRA_PERIOD";
+	public final static String EXTRA_ONOFF = "com.celulabs.pfcsense.util.EXTRA_ONOFF";
 	public int periodMinVal;
-	
+
 	public static boolean isCorrectService(String uuidString) {
 		return true;
 	}
-	
+
 	public GenericCharacteristicTableRow(Context con) {
 		super(con);
 		this.context = con;
@@ -128,22 +74,22 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 		this.setBackgroundColor(Color.TRANSPARENT);
 		this.setOnClickListener(this);
 		this.periodMinVal = 100;
-		
+
 		// GATT database
 		Resources res = getResources();
 		XmlResourceParser xpp = res.getXml(R.xml.gatt_uuid);
 		new GattInfo(xpp);
-		
+
 		this.rowLayout = new RelativeLayout(this.context);
-		
+
 		this.linePaint = new Paint() {
 			{
 			setStrokeWidth(1);
 			setARGB(255, 0, 0, 0);
 			}
 		};
-		
-		
+
+
 		//Add all views for the default cell
 		//Service icon
 		this.icon = new ImageView(con) {
@@ -165,7 +111,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 			{
 				setTextSize(TypedValue.COMPLEX_UNIT_PT,8.0f);
 				setId(3);
-				setVisibility(View.INVISIBLE);	
+				setVisibility(View.INVISIBLE);
 			}
 		};
 
@@ -199,7 +145,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 				setEnabled(false);
 			}
 		};
-		
+
 		this.onOff = new Switch(con) {
 			{
 			setVisibility(View.INVISIBLE);
@@ -218,30 +164,30 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 			{
 				setVisibility(View.INVISIBLE);
 				setId(102);
-				setText("Sensor state");
+				setText("Sensor activado");
 			}
 		};
 		this.periodLegend = new TextView(con) {
 			{
 				setVisibility(View.INVISIBLE);
 				setId(103);
-				setText("Sensor period");
+				setText("Periodo");
 			}
 		};
 		this.calibrateButton = new Button(con) {
 			{
 				setVisibility(View.INVISIBLE);
 				setId(104);
-				setText("Calibrate");
+				setText("Calibración");
 			}
 		};
-		
-		
+
+
 		this.periodBar.setOnSeekBarChangeListener(this);
 		this.onOff.setOnCheckedChangeListener(this);
-		
+
 		//Setup content of the fields
-		
+
 		//Setup layout for all cell elements
 		RelativeLayout.LayoutParams iconItemParams = new RelativeLayout.LayoutParams(
 				iconSize,
@@ -251,10 +197,10 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 						RelativeLayout.TRUE);
 				addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
 			}
-			
+
 		};
 		icon.setLayoutParams(iconItemParams);
-		
+
 		RelativeLayout.LayoutParams tmpLayoutParams = new RelativeLayout.LayoutParams(
 		        RelativeLayout.LayoutParams.WRAP_CONTENT,
 		        RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -330,9 +276,9 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
         tmpLayoutParams.rightMargin = 50;
         tmpLayoutParams.addRule(RelativeLayout.RIGHT_OF, icon.getId());
 		this.periodBar.setLayoutParams(tmpLayoutParams);
-		
+
 		// Add all views to cell
-		rowLayout.addView(icon);
+//		rowLayout.addView(icon);
 		rowLayout.addView(title);
 		rowLayout.addView(uuidLabel);
 		rowLayout.addView(value);
@@ -344,22 +290,25 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 		rowLayout.addView(this.periodLegend);
 		rowLayout.addView(this.periodBar);
 		rowLayout.addView(this.calibrateButton);
-		
+
+		/* Añadido pequeño padding al layout general (quitada la imagen) */
+		float scale = getResources().getDisplayMetrics().density;
+		int dpAsPixels = (int) (10 * scale + 0.5f);
+		rowLayout.setPadding(dpAsPixels, 0, dpAsPixels, 0);
+
 		this.addView(rowLayout);
 	}
-	
+
 	public void setIcon(String iconPrefix, String uuid) {
 		WindowManager wm = (WindowManager) this.context.getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
 		Point dSize = new Point();
 		display.getSize(dSize);
 		Drawable image = null;
-		
-		
-		
-		
+
+
 		Log.d("GenericCharacteristicTableRow", "Width : " + dSize.x + " Height : " + dSize.y);
-		Log.d("GenericCharacteristicTableRow","Fetching icon : " + GattInfo.uuidToIcon(UUID.fromString(uuid)));
+		Log.d("GenericCharacteristicTableRow", "Fetching icon : " + GattInfo.uuidToIcon(UUID.fromString(uuid)));
 		if (dSize.x > 1100) {
 			Uri uri = Uri.parse("android.resource://"+ this.context.getPackageName()+"/drawable/" + iconPrefix + GattInfo.uuidToIcon(UUID.fromString(uuid)) + "_300");
 			try {
@@ -392,7 +341,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 						RelativeLayout.TRUE);
 				addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
 			}
-			
+
 		};
 		icon.setLayoutParams(iconItemParams);
 	}
@@ -402,10 +351,8 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 		Point dSize = new Point();
 		display.getSize(dSize);
 		Drawable image = null;
-		
-		
-		
-		
+
+
 		if (dSize.x > 1100) {
 			Uri uri = Uri.parse("android.resource://"+ this.context.getPackageName()+"/drawable/" + iconPrefix + variantName + "_300");
 			try {
@@ -438,10 +385,10 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 						RelativeLayout.TRUE);
 				addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
 			}
-			
+
 		};
 		icon.setLayoutParams(iconItemParams);
-		
+
 	}
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -491,9 +438,10 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 			this.periodBar.startAnimation(fadeOut);
 		}
 	}
-	@Override 
+
+	@Override
 	public void onAnimationStart (Animation animation) {
-		
+
 	}
 
 	@Override
@@ -520,14 +468,14 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 
 	@Override
 	public void onAnimationRepeat(Animation animation) {
-		
-	}	
-	
+
+	}
+
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		Log.d("GenericBluetoothProfile", "Period changed : " + progress);
-		this.periodLegend.setText("Sensor period (currently : " + ((progress * 10) + periodMinVal) + "ms)");
+		this.periodLegend.setText("Periodo actualización (actualmente: " + ((progress * 10) + periodMinVal) + "ms)");
 	}
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {

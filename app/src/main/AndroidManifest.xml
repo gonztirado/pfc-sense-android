@@ -72,8 +72,8 @@
             android:name="com.celulabs.pfcsense.ble.sensortag.PreferencesActivity"
             android:parentActivityName="com.celulabs.pfcsense.ble.sensortag.DeviceActivity"
             android:screenOrientation="unspecified"
-            android:configChanges="orientation|screenSize|keyboardHidden" 
-            android:label="Preferences"/>
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Configuración" />
         
     </application>
 
