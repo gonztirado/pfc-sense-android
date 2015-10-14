@@ -114,11 +114,13 @@ public class SensorTagAccelerometerProfile extends GenericBluetoothProfile {
 	}
 	
 	public static boolean isCorrectService(BluetoothGattService service) {
-		if ((service.getUuid().toString().compareTo(SensorTagGatt.UUID_ACC_SERV.toString())) == 0) {
-			return true;
-		}
-		else return false;
-	}
+        // FIXME deshabilitado servicio para que no lo descubra
+//		if ((service.getUuid().toString().compareTo(SensorTagGatt.UUID_ACC_SERV.toString())) == 0) {
+//			return true;
+//		}
+//		else return false;
+        return false;
+    }
     @Override
 	public void didUpdateValueForCharacteristic(BluetoothGattCharacteristic c) {
 			if (c.equals(this.dataC)){

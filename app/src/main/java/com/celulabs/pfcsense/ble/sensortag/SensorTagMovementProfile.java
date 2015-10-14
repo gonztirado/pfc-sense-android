@@ -104,11 +104,13 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 	}
 	
 	public static boolean isCorrectService(BluetoothGattService service) {
-		if ((service.getUuid().toString().compareTo(SensorTagGatt.UUID_MOV_SERV.toString())) == 0) {
-			return true;
-		}
-		else return false;
-	}
+        // FIXME deshabilitado servicio para que no lo descubra
+//		if ((service.getUuid().toString().compareTo(SensorTagGatt.UUID_MOV_SERV.toString())) == 0) {
+//			return true;
+//		}
+//		else return false;
+        return false;
+    }
 	@Override 
 	public void enableService() {
         int error = mBTLeService.writeCharacteristic(this.configC, new byte[] {0x7F,0x02});

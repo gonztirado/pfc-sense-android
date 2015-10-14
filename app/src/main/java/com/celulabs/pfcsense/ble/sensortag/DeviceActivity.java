@@ -399,9 +399,11 @@ public class DeviceActivity extends ViewPagerActivity {
                                 List<BluetoothGattCharacteristic> chars = s.getCharacteristics();
                                 totalCharacteristics += chars.size();
                             }
-                            //Special profile for Cloud service
-                            mqttProfile = new IBMIoTCloudProfile(context, mBluetoothDevice, null, mBtLeService);
-                            mProfiles.add(mqttProfile);
+
+                            // FIXME quitado perfil de conexión con IBM cloud
+                            // Special profile for Cloud service
+//                            mqttProfile = new IBMIoTCloudProfile(context, mBluetoothDevice, null, mBtLeService);
+//                            mProfiles.add(mqttProfile);
                             if (totalCharacteristics == 0) {
                                 //Something bad happened, we have a problem
                                 runOnUiThread(new Runnable() {

@@ -54,11 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
@@ -68,6 +63,11 @@ import android.view.View;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GattInfo;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class SensorTagSimpleKeysProfile extends GenericBluetoothProfile {
 	public SensorTagSimpleKeysProfile(Context con,BluetoothDevice device,BluetoothGattService service,BluetoothLeService controller) {
@@ -95,10 +95,12 @@ public class SensorTagSimpleKeysProfile extends GenericBluetoothProfile {
 		
 	}
 	public static boolean isCorrectService(BluetoothGattService service) {
-		if ((service.getUuid().toString().compareTo(SensorTagGatt.UUID_KEY_SERV.toString())) == 0) {
-			return true;
-		}
-		else return false;
+		// FIXME deshabilitado servicio para que no lo descubra
+//		if ((service.getUuid().toString().compareTo(SensorTagGatt.UUID_KEY_SERV.toString())) == 0) {
+//			return true;
+//		}
+//		else return false;
+		return false;
 	}
 	@Override 
 	public void enableService () {

@@ -123,10 +123,12 @@ public class DeviceInformationServiceProfile extends GenericBluetoothProfile {
 		this.tRow.setIcon(this.getIconPrefix(), service.getUuid().toString());
 	}
 	public static boolean isCorrectService(BluetoothGattService service) {
-		if ((service.getUuid().toString().compareTo(dISService_UUID)) == 0) {
-			return true;
-		}
-		else return false;
+		// FIXME deshabilitado servicio para que no lo descubra
+//		if ((service.getUuid().toString().compareTo(dISService_UUID)) == 0) {
+//			return true;
+//		}
+//		else return false;
+		return false;
 	}
 	@Override
 	public void configureService() {

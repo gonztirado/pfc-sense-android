@@ -54,8 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.ti.profiles;
 
-import java.util.List;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
@@ -68,6 +66,8 @@ import android.view.View;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
+
+import java.util.List;
 
 public class TIOADProfile extends GenericBluetoothProfile {
 	private static final String oadService_UUID = "f000ffc0-0451-4000-b000-000000000000";
@@ -140,11 +140,13 @@ public class TIOADProfile extends GenericBluetoothProfile {
         }
     }
     public static boolean isCorrectService(BluetoothGattService service) {
-		if ((service.getUuid().toString().compareTo(oadService_UUID)) == 0) {
-			return true;
-		}
-		else return false;
-	}
+        // FIXME deshabilitado servicio para que no lo descubra
+//		if ((service.getUuid().toString().compareTo(oadService_UUID)) == 0) {
+//			return true;
+//		}
+//		else return false;
+        return false;
+    }
 
     public void prepareForOAD () {
         //Override click and launch the OAD screen
