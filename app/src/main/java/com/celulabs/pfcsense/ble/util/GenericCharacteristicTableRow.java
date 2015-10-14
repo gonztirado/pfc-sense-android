@@ -101,7 +101,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 	protected final RelativeLayout rowLayout;
 	public int iconSize = 150;
 	public boolean config;
-	
+
 	//Configuration operation : Show configuration contents
 	public final Switch onOff;
 	public final SeekBar periodBar;
@@ -115,11 +115,11 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 	public final static String EXTRA_PERIOD = "com.example.ti.util.EXTRA_PERIOD";
 	public final static String EXTRA_ONOFF = "com.example.ti.util.EXTRA_ONOFF";
 	public int periodMinVal;
-	
+
 	public static boolean isCorrectService(String uuidString) {
 		return true;
 	}
-	
+
 	public GenericCharacteristicTableRow(Context con) {
 		super(con);
 		this.context = con;
@@ -128,22 +128,22 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 		this.setBackgroundColor(Color.TRANSPARENT);
 		this.setOnClickListener(this);
 		this.periodMinVal = 100;
-		
+
 		// GATT database
 		Resources res = getResources();
 		XmlResourceParser xpp = res.getXml(R.xml.gatt_uuid);
 		new GattInfo(xpp);
-		
+
 		this.rowLayout = new RelativeLayout(this.context);
-		
+
 		this.linePaint = new Paint() {
 			{
 			setStrokeWidth(1);
 			setARGB(255, 0, 0, 0);
 			}
 		};
-		
-		
+
+
 		//Add all views for the default cell
 		//Service icon
 		this.icon = new ImageView(con) {
@@ -165,7 +165,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 			{
 				setTextSize(TypedValue.COMPLEX_UNIT_PT,8.0f);
 				setId(3);
-				setVisibility(View.INVISIBLE);	
+				setVisibility(View.INVISIBLE);
 			}
 		};
 
@@ -199,7 +199,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 				setEnabled(false);
 			}
 		};
-		
+
 		this.onOff = new Switch(con) {
 			{
 			setVisibility(View.INVISIBLE);
@@ -235,13 +235,13 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 				setText("Calibración");
 			}
 		};
-		
-		
+
+
 		this.periodBar.setOnSeekBarChangeListener(this);
 		this.onOff.setOnCheckedChangeListener(this);
-		
+
 		//Setup content of the fields
-		
+
 		//Setup layout for all cell elements
 		RelativeLayout.LayoutParams iconItemParams = new RelativeLayout.LayoutParams(
 				iconSize,
@@ -251,10 +251,10 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 						RelativeLayout.TRUE);
 				addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
 			}
-			
+
 		};
 		icon.setLayoutParams(iconItemParams);
-		
+
 		RelativeLayout.LayoutParams tmpLayoutParams = new RelativeLayout.LayoutParams(
 		        RelativeLayout.LayoutParams.WRAP_CONTENT,
 		        RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -330,9 +330,9 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
         tmpLayoutParams.rightMargin = 50;
         tmpLayoutParams.addRule(RelativeLayout.RIGHT_OF, icon.getId());
 		this.periodBar.setLayoutParams(tmpLayoutParams);
-		
+
 		// Add all views to cell
-		rowLayout.addView(icon);
+//		rowLayout.addView(icon);
 		rowLayout.addView(title);
 		rowLayout.addView(uuidLabel);
 		rowLayout.addView(value);
@@ -344,22 +344,25 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 		rowLayout.addView(this.periodLegend);
 		rowLayout.addView(this.periodBar);
 		rowLayout.addView(this.calibrateButton);
-		
+
+		/* Añadido pequeño padding al layout general (quitada la imagen) */
+		float scale = getResources().getDisplayMetrics().density;
+		int dpAsPixels = (int) (10 * scale + 0.5f);
+		rowLayout.setPadding(dpAsPixels, 0, dpAsPixels, 0);
+
 		this.addView(rowLayout);
 	}
-	
+
 	public void setIcon(String iconPrefix, String uuid) {
 		WindowManager wm = (WindowManager) this.context.getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
 		Point dSize = new Point();
 		display.getSize(dSize);
 		Drawable image = null;
-		
-		
-		
-		
+
+
 		Log.d("GenericCharacteristicTableRow", "Width : " + dSize.x + " Height : " + dSize.y);
-		Log.d("GenericCharacteristicTableRow","Fetching icon : " + GattInfo.uuidToIcon(UUID.fromString(uuid)));
+		Log.d("GenericCharacteristicTableRow", "Fetching icon : " + GattInfo.uuidToIcon(UUID.fromString(uuid)));
 		if (dSize.x > 1100) {
 			Uri uri = Uri.parse("android.resource://"+ this.context.getPackageName()+"/drawable/" + iconPrefix + GattInfo.uuidToIcon(UUID.fromString(uuid)) + "_300");
 			try {
@@ -392,7 +395,7 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 						RelativeLayout.TRUE);
 				addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
 			}
-			
+
 		};
 		icon.setLayoutParams(iconItemParams);
 	}
@@ -402,10 +405,8 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 		Point dSize = new Point();
 		display.getSize(dSize);
 		Drawable image = null;
-		
-		
-		
-		
+
+
 		if (dSize.x > 1100) {
 			Uri uri = Uri.parse("android.resource://"+ this.context.getPackageName()+"/drawable/" + iconPrefix + variantName + "_300");
 			try {
@@ -438,10 +439,10 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 						RelativeLayout.TRUE);
 				addRule(RelativeLayout.ALIGN_PARENT_LEFT,RelativeLayout.TRUE);
 			}
-			
+
 		};
 		icon.setLayoutParams(iconItemParams);
-		
+
 	}
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -491,9 +492,10 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 			this.periodBar.startAnimation(fadeOut);
 		}
 	}
-	@Override 
+
+	@Override
 	public void onAnimationStart (Animation animation) {
-		
+
 	}
 
 	@Override
@@ -520,9 +522,9 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 
 	@Override
 	public void onAnimationRepeat(Animation animation) {
-		
-	}	
-	
+
+	}
+
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
