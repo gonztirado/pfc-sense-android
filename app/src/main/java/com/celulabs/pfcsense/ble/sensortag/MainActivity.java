@@ -546,7 +546,7 @@ public class MainActivity extends ViewPagerActivity {
 					setBusy(false);
 					startDeviceActivity();
 				} else
-					setError("Connect failed. Status: " + status);
+					setError("Fallo en conexión. Status: " + status);
 			} else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
 				// GATT disconnect
 				int status = intent.getIntExtra(BluetoothLeService.EXTRA_STATUS,
@@ -554,10 +554,10 @@ public class MainActivity extends ViewPagerActivity {
 				stopDeviceActivity();
 				if (status == BluetoothGatt.GATT_SUCCESS) {
 					setBusy(false);
-					mScanView.setStatus(mBluetoothDevice.getName() + " disconnected",
-					    STATUS_DURATION);
+					mScanView.setStatus(mBluetoothDevice.getName() + " desconectado",
+							STATUS_DURATION);
 				} else {
-					setError("Disconnect Status: " + HCIDefines.hciErrorCodeStrings.get(status));
+					setError("Status desconexión: " + HCIDefines.hciErrorCodeStrings.get(status));
 				}
 				mConnIndex = NO_DEVICE;
 				mBluetoothLeService.close();
