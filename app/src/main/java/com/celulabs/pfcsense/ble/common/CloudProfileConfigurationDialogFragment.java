@@ -35,7 +35,7 @@ public class CloudProfileConfigurationDialogFragment extends DialogFragment impl
     public final static String PREF_CLOUD_PUBLISH_TOPIC = "cloud_publish_topic";
     public final static String PREF_CLOUD_CLEAN_SESSION = "cloud_clean_session";
     public final static String PREF_CLOUD_USE_SSL = "cloud_use_ssl";
-    public final static String ACTION_CLOUD_CONFIG_WAS_UPDATED = "com.example.ti.ble.common.CloudProfileConfigurationDialogFragment.UPDATE";
+    public final static String ACTION_CLOUD_CONFIG_WAS_UPDATED = "com.celulabs.pfcsense.ble.common.CloudProfileConfigurationDialogFragment.UPDATE";
     public final static String DEF_CLOUD_IBMQUICKSTART_BROKER_ADDR = "tcp://quickstart.messaging.internetofthings.ibmcloud.com";
     public final static String DEF_CLOUD_IBMQUICKSTART_BROKER_PORT = "1883";
     public final static String DEF_CLOUD_IBMQUICKSTART_PUBLISH_TOPIC = "iot-2/evt/status/fmt/json";

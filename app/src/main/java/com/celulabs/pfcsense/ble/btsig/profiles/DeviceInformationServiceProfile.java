@@ -23,8 +23,8 @@ public class DeviceInformationServiceProfile extends GenericBluetoothProfile {
 	private static final String dISHardwareREV_UUID = "00002a27-0000-1000-8000-00805f9b34fb";
 	private static final String dISSoftwareREV_UUID = "00002a28-0000-1000-8000-00805f9b34fb";
 	private static final String dISManifacturerNAME_UUID = "00002a29-0000-1000-8000-00805f9b34fb";
-	public final static String ACTION_FW_REV_UPDATED = "com.example.ti.ble.btsig.ACTION_FW_REV_UPDATED";
-	public final static String EXTRA_FW_REV_STRING = "com.example.ti.ble.btsig.EXTRA_FW_REV_STRING";
+	public final static String ACTION_FW_REV_UPDATED = "com.celulabs.pfcsense.ble.btsig.ACTION_FW_REV_UPDATED";
+	public final static String EXTRA_FW_REV_STRING = "com.celulabs.pfcsense.ble.btsig.EXTRA_FW_REV_STRING";
 	
 	BluetoothGattCharacteristic systemIDc;
 	BluetoothGattCharacteristic modelNRc;

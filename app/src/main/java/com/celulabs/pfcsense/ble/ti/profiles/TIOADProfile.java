@@ -20,8 +20,8 @@ public class TIOADProfile extends GenericBluetoothProfile {
 	private static final String oadImageNotify_UUID = "f000ffc1-0451-4000-b000-000000000000";
 	private static final String oadBlockRequest_UUID = "f000ffc2-0451-4000-b000-000000000000";
 
-    public static final String ACTION_PREPARE_FOR_OAD = "com.example.ti.ble.ti.profiles.ACTION_PREPARE_FOR_OAD";
-    public static final String ACTION_RESTORE_AFTER_OAD = "com.example.ti.ble.ti.profiles.ACTION_RESTORE_AFTER_OAD";
+    public static final String ACTION_PREPARE_FOR_OAD = "com.celulabs.pfcsense.ble.ti.profiles.ACTION_PREPARE_FOR_OAD";
+    public static final String ACTION_RESTORE_AFTER_OAD = "com.celulabs.pfcsense.ble.ti.profiles.ACTION_RESTORE_AFTER_OAD";
 
 
 	private String fwRev;

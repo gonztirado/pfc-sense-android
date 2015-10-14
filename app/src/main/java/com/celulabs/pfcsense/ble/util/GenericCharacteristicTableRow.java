@@ -54,12 +54,12 @@ public class GenericCharacteristicTableRow extends TableRow implements View.OnCl
 	public final TextView onOffLegend;
 	public final TextView periodLegend;
 	public final Button calibrateButton;
-	public final static String ACTION_PERIOD_UPDATE = "com.example.ti.util.ACTION_PERIOD_UPDATE";
-	public final static String ACTION_ONOFF_UPDATE = "com.example.ti.util.ACTION_ONOFF_UPDATE";
-	public final static String ACTION_CALIBRATE = "com.example.ti.util.ACTION_CALIBRATE";
-	public final static String EXTRA_SERVICE_UUID = "com.example.ti.util.EXTRA_SERVICE_UUID";
-	public final static String EXTRA_PERIOD = "com.example.ti.util.EXTRA_PERIOD";
-	public final static String EXTRA_ONOFF = "com.example.ti.util.EXTRA_ONOFF";
+	public final static String ACTION_PERIOD_UPDATE = "com.celulabs.pfcsense.util.ACTION_PERIOD_UPDATE";
+	public final static String ACTION_ONOFF_UPDATE = "com.celulabs.pfcsense.util.ACTION_ONOFF_UPDATE";
+	public final static String ACTION_CALIBRATE = "com.celulabs.pfcsense.util.ACTION_CALIBRATE";
+	public final static String EXTRA_SERVICE_UUID = "com.celulabs.pfcsense.util.EXTRA_SERVICE_UUID";
+	public final static String EXTRA_PERIOD = "com.celulabs.pfcsense.util.EXTRA_PERIOD";
+	public final static String EXTRA_ONOFF = "com.celulabs.pfcsense.util.EXTRA_ONOFF";
 	public int periodMinVal;
 
 	public static boolean isCorrectService(String uuidString) {

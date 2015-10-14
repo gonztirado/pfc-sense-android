@@ -35,7 +35,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FwUpdateActivity_CC26xx extends Activity {
-    public final static String EXTRA_MESSAGE = "com.example.ti.ble.sensortag.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.celulabs.pfcsense.ble.sensortag.MESSAGE";
     // Log
     private static String TAG = "FwUpdateActivity";
 

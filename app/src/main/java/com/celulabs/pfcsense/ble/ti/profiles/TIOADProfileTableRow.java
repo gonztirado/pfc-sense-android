@@ -8,7 +8,7 @@ import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 
 public class TIOADProfileTableRow extends GenericCharacteristicTableRow {
 
-    public static final String ACTION_VIEW_CLICKED = "com.example.ti.ble.ti.profiles.TIOADProfileTableRow.ACTION_VIEW_CLICKED";
+	public static final String ACTION_VIEW_CLICKED = "com.celulabs.pfcsense.ble.ti.profiles.TIOADProfileTableRow.ACTION_VIEW_CLICKED";
 
 	public TIOADProfileTableRow(Context con) {
 		super(con);
