@@ -60,13 +60,14 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-// import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
+
+// import android.util.Log;
 
 public class AboutDialog extends Dialog {
   // Log
@@ -116,11 +117,11 @@ public class AboutDialog extends Dialog {
     Resources res = mContext.getResources();
     String appName = res.getString(R.string.app_name);
     TextView title = (TextView) findViewById(R.id.title);
-    title.setText("About " + appName);
+    title.setText(appName);
 
     // Application info
     TextView head = (TextView) findViewById(R.id.header);
-    String appVersion = "Revision: ";
+    String appVersion = "Versión: ";
     try {
       appVersion += mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionName;
     } catch (NameNotFoundException e) {
