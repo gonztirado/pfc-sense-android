@@ -206,7 +206,7 @@ public class MainActivity extends ViewPagerActivity {
 			onAbout();
 			break;
 		case R.id.opt_exit:
-			Toast.makeText(this, "Exit...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Saliendo...", Toast.LENGTH_SHORT).show();
 			finish();
 			break;
 		default:
