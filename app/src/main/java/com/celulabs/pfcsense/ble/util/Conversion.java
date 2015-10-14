@@ -52,7 +52,7 @@
 
 
  **************************************************************************************************/
-package com.celulabs.pfcsense.util;
+package com.celulabs.pfcsense.ble.util;
 
 import java.util.Formatter;
 

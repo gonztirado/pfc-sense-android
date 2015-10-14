@@ -58,7 +58,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 
 public class TIOADProfileTableRow extends GenericCharacteristicTableRow {
 

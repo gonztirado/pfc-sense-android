@@ -60,7 +60,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 
 public class SensorTagBarometerTableRow extends GenericCharacteristicTableRow {
 	public SensorTagBarometerTableRow(Context con) {

@@ -59,7 +59,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 
 public class DeviceInformationServiceTableRow extends
 		GenericCharacteristicTableRow {

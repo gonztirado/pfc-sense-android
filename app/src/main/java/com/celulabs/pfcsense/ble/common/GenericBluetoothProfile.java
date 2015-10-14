@@ -54,11 +54,9 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.common;
 
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
-
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -67,6 +65,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TableRow;
+
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 
 import java.util.Map;
 

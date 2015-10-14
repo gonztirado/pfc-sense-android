@@ -54,7 +54,7 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import com.celulabs.pfcsense.util.Point3D;
+import com.celulabs.pfcsense.ble.util.Point3D;
 
 
 /**

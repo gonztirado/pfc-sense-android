@@ -69,8 +69,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.celulabs.pfcsense.ble.common.BleDeviceInfo;
-import com.celulabs.pfcsense.util.CustomTimer;
-import com.celulabs.pfcsense.util.CustomTimerCallback;
+import com.celulabs.pfcsense.ble.util.CustomTimer;
+import com.celulabs.pfcsense.ble.util.CustomTimerCallback;
 
 import java.util.List;
 

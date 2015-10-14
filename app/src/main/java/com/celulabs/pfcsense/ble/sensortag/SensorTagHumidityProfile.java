@@ -54,11 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
@@ -68,8 +63,13 @@ import android.util.Log;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GattInfo;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
-import com.celulabs.pfcsense.util.Point3D;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.Point3D;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class SensorTagHumidityProfile extends GenericBluetoothProfile {
 		public SensorTagHumidityProfile(Context con,BluetoothDevice device,BluetoothGattService service,BluetoothLeService controller) {

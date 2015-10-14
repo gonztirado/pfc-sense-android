@@ -63,8 +63,8 @@ import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
-import com.celulabs.pfcsense.util.SparkLineView;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.SparkLineView;
 
 public class SensorTagMovementTableRow extends GenericCharacteristicTableRow {
 	public final SparkLineView sl4,sl5,sl6;

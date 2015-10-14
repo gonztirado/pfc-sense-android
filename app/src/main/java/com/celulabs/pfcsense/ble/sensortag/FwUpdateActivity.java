@@ -54,14 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothGatt;
@@ -86,7 +78,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
-import com.celulabs.pfcsense.util.Conversion;
+import com.celulabs.pfcsense.ble.util.Conversion;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FwUpdateActivity extends Activity {
   public final static String EXTRA_MESSAGE = "com.example.ti.ble.sensortag.MESSAGE";

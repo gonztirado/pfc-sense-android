@@ -67,7 +67,7 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
-import com.celulabs.pfcsense.util.CustomToast;
+import com.celulabs.pfcsense.ble.util.CustomToast;
 import com.orm.SugarApp;
 
 /**

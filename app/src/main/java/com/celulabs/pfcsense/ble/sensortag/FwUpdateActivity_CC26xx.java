@@ -78,7 +78,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
-import com.celulabs.pfcsense.util.Conversion;
+import com.celulabs.pfcsense.ble.util.Conversion;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -60,11 +60,11 @@ import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.util.Log;
 
-import com.celulabs.pfcsense.controller.SensorDataController;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
-import com.celulabs.pfcsense.util.Point3D;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.Point3D;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
 import java.util.HashMap;
 import java.util.List;

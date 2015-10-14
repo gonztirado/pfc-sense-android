@@ -55,13 +55,36 @@
 package com.celulabs.pfcsense.ble.sensortag;
 
 //import static android.bluetooth.BluetoothGattCharacteristic.FORMAT_UINT8;
-import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.*;
-import static java.lang.Math.pow;
+
+import android.bluetooth.BluetoothGattCharacteristic;
+
+import com.celulabs.pfcsense.ble.util.Point3D;
 
 import java.util.List;
 import java.util.UUID;
-import com.celulabs.pfcsense.util.Point3D;
-import android.bluetooth.BluetoothGattCharacteristic;
+
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_ACC_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_ACC_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_ACC_SERV;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_GYR_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_GYR_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_GYR_SERV;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_HUM_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_HUM_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_HUM_SERV;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_IRT_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_IRT_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_IRT_SERV;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_MAG_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_MAG_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_MAG_SERV;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_MOV_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_MOV_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_MOV_SERV;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_OPT_CONF;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_OPT_DATA;
+import static com.celulabs.pfcsense.ble.sensortag.SensorTagGatt.UUID_OPT_SERV;
+import static java.lang.Math.pow;
 
 
 /**

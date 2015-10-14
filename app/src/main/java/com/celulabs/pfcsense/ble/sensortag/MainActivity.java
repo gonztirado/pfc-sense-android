@@ -80,7 +80,7 @@ import com.celulabs.pfcsense.ble.common.BleDeviceInfo;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.HCIDefines;
 import com.celulabs.pfcsense.ble.common.HelpView;
-import com.celulabs.pfcsense.util.CustomToast;
+import com.celulabs.pfcsense.ble.util.CustomToast;
 
 import java.io.File;
 import java.io.IOException;

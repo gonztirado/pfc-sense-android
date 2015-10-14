@@ -54,9 +54,6 @@
  **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.content.Context;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -64,7 +61,10 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SensorTagSimpleKeysTableRow extends GenericCharacteristicTableRow {
 	protected byte lastKeys;

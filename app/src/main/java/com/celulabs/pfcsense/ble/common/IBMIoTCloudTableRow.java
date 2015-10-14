@@ -65,7 +65,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.celulabs.pfcsense.ble.sensortag.R;
-import com.celulabs.pfcsense.util.GenericCharacteristicTableRow;
+import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 
 /**
  * Created by ole on 14/04/15.
