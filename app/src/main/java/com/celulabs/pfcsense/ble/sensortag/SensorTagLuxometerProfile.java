@@ -10,6 +10,7 @@ import com.celulabs.pfcsense.ble.common.GattInfo;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
 import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 import com.celulabs.pfcsense.ble.util.Point3D;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,8 +58,14 @@ public class SensorTagLuxometerProfile extends GenericBluetoothProfile {
         byte[] value = c.getValue();
 				if (c.equals(this.dataC)){
 					Point3D v = Sensor.LUXOMETER.convert(value);
-					if (this.tRow.config == false) this.tRow.value.setText(String.format("%.1f Lux", v.x));
-					this.tRow.sl1.addValue((float)v.x);
+					double luxometerValue = v.x;
+
+					if (this.tRow.config == false)
+						this.tRow.value.setText(String.format("%.1f Lux", luxometerValue));
+					this.tRow.sl1.addValue((float) luxometerValue);
+
+					/* Añadimos valor de temperatura al controlador */
+					SensorDataController.getInstance().addLuxometerValue(luxometerValue);
 				}
 		}
     @Override

@@ -2,9 +2,13 @@ package com.celulabs.pfcsense.controller;
 
 import android.content.Context;
 
+import com.celulabs.pfcsense.model.BarometerData;
+import com.celulabs.pfcsense.model.HumidityData;
+import com.celulabs.pfcsense.model.LuxometerData;
 import com.celulabs.pfcsense.model.SensorData;
 import com.celulabs.pfcsense.model.SensorInfo;
 import com.celulabs.pfcsense.model.TemperatureData;
+import com.celulabs.pfcsense.model.TemperatureIRData;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
@@ -16,8 +20,8 @@ import com.parse.ParseUser;
  * @author gonztirado
  */
 public class ParseController {
-    private static final String APPLICATION_ID = "dUM5zwslG7vpahUzQJhYhr3xy3PVMDjnBrTSKlvu";
-    private static final String CLIENT_KEY = "qydzIz37DCNaxlUEtjru8Cs4qHh6wjE9tqgfWg0c";
+    private static final String APPLICATION_ID = "b0qMt6S10hSKTZAkkMFxagZWx4Ncv8foDBNkLvyw";
+    private static final String CLIENT_KEY = "HiQrmFNU76iO7HTOfeUSiLMK6kJANOmy5UP6NpTz";
 
     private static ParseController ourInstance = new ParseController();
 
@@ -55,6 +59,10 @@ public class ParseController {
         ParseObject.registerSubclass(SensorInfo.class);
         ParseObject.registerSubclass(SensorData.class);
         ParseObject.registerSubclass(TemperatureData.class);
+        ParseObject.registerSubclass(TemperatureIRData.class);
+        ParseObject.registerSubclass(BarometerData.class);
+        ParseObject.registerSubclass(HumidityData.class);
+        ParseObject.registerSubclass(LuxometerData.class);
     }
 
     /**

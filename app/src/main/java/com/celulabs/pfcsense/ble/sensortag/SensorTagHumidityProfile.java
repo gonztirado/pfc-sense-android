@@ -11,6 +11,7 @@ import com.celulabs.pfcsense.ble.common.GattInfo;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
 import com.celulabs.pfcsense.ble.util.GenericCharacteristicTableRow;
 import com.celulabs.pfcsense.ble.util.Point3D;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -62,10 +63,16 @@ public class SensorTagHumidityProfile extends GenericBluetoothProfile {
             byte[] value = c.getValue();
 				if (c.equals(this.dataC)){
 					Point3D v = Sensor.HUMIDITY.convert(value);
-					if (this.tRow.config == false) this.tRow.value.setText(String.format("%.1f %%rH", v.x));
+					double humidityValue = v.x;
+
+					if (this.tRow.config == false)
+						this.tRow.value.setText(String.format("%.1f %%rH", humidityValue));
 					this.tRow.sl1.maxVal = 100;
 					this.tRow.sl1.minVal = 0;
-					this.tRow.sl1.addValue((float)v.x);
+					this.tRow.sl1.addValue((float) humidityValue);
+
+					/* Añadimos valor de humedad al controlador */
+					SensorDataController.getInstance().addHumidityValue(humidityValue);
 				}
 		}
     @Override

@@ -10,6 +10,7 @@ import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.GattInfo;
 import com.celulabs.pfcsense.ble.common.GenericBluetoothProfile;
 import com.celulabs.pfcsense.ble.util.Point3D;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -138,19 +139,25 @@ public class SensorTagBarometerProfile extends GenericBluetoothProfile {
 		if (c.equals(this.dataC)){
 			Point3D v;
 			v = Sensor.BAROMETER.convert(value);
+			double barometerValue = v.x;
+
 			if (!(this.isHeightCalibrated)) {
-				BarometerCalibrationCoefficients.INSTANCE.heightCalibration = v.x;
+				BarometerCalibrationCoefficients.INSTANCE.heightCalibration = barometerValue;
 				//Toast.makeText(this.tRow.getContext(), "Height measurement calibrated",
 				//			    Toast.LENGTH_SHORT).show();
 				this.isHeightCalibrated = true;
 			}
-			double h = (v.x - BarometerCalibrationCoefficients.INSTANCE.heightCalibration)
-			    / PA_PER_METER;
+			double h = (barometerValue - BarometerCalibrationCoefficients.INSTANCE.heightCalibration)
+					/ PA_PER_METER;
 			h = (double) Math.round(-h * 10.0) / 10.0;
-			//msg = decimal.format(v.x / 100.0f) + "\n" + h;
-			if (this.tRow.config == false) this.tRow.value.setText(String.format("%.1f mBar %.1f meter", v.x / 100, h));
-			this.tRow.sl1.addValue((float)v.x / 100.0f);
+			//msg = decimal.format(barometerValue / 100.0f) + "\n" + h;
+			if (this.tRow.config == false)
+				this.tRow.value.setText(String.format("%.1f mBar %.1f meter", barometerValue / 100, h));
+			this.tRow.sl1.addValue((float) barometerValue / 100.0f);
 			//mBarValue.setText(msg);
+
+			/* Añadimos valor de presión barométrica al controlador */
+			SensorDataController.getInstance().addBarometerValue(barometerValue);
 		}
 	}
 	
