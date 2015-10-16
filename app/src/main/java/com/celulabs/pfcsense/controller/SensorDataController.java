@@ -26,7 +26,7 @@ public class SensorDataController {
      * Construtor
      */
     private SensorDataController() {
-        setCurrentSensorInfo("", "");
+        currentSensorInfo = new SensorInfo();
     }
 
     /**
@@ -39,16 +39,23 @@ public class SensorDataController {
     /**
      * Setea la información del sensor seleccionado
      *
+     * @param deviceId    identificador del terminal
+     * @param deviceModel nombre del modelo del terminal
+     */
+    public void setCurrenDeviceInfo(String deviceId, String deviceModel) {
+        currentSensorInfo.setDeviceId(deviceId);
+        currentSensorInfo.setDeviceModel(deviceModel);
+    }
+
+    /**
+     * Setea la información del sensor seleccionado
+     *
      * @param sensorId   identificador del sensor
      * @param sensorName nombre descriptivo del sensor
      */
     public void setCurrentSensorInfo(String sensorId, String sensorName) {
-        SensorInfo sensorInfo = new SensorInfo();
-        sensorInfo.setDeviceId("1234");
-        sensorInfo.setDeviceModel("bq_test");
-        sensorInfo.setSensorId(sensorId);
-        sensorInfo.setSensorName(sensorName);
-        this.currentSensorInfo = sensorInfo;
+        currentSensorInfo.setSensorId(sensorId);
+        currentSensorInfo.setSensorName(sensorName);
     }
 
     public void addTemperature(double value) {

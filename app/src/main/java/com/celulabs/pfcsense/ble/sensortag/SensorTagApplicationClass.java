@@ -10,12 +10,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.IBinder;
+import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.util.CustomToast;
 import com.celulabs.pfcsense.controller.ParseController;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
 public class SensorTagApplicationClass extends Application {
 
@@ -64,6 +67,12 @@ public class SensorTagApplicationClass extends Application {
 
         /* Inicializar parse */
         ParseController.getInstance().initApp(this);
+
+        /* Inicializamos modelo de dispositivo */
+        TelephonyManager mngr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        String deviceId = mngr.getDeviceId();
+        String deviceModel = Build.MANUFACTURER + " " + Build.MODEL;
+        SensorDataController.getInstance().setCurrenDeviceInfo(deviceId, deviceModel);
 
         super.onCreate();
 
