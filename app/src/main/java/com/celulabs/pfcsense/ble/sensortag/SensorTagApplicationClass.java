@@ -1,5 +1,6 @@
 package com.celulabs.pfcsense.ble.sensortag;
 
+import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -14,9 +15,13 @@ import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.util.CustomToast;
-import com.orm.SugarApp;
+import com.celulabs.pfcsense.model.SensorData;
+import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
-public class SensorTagApplicationClass extends SugarApp {
+public class SensorTagApplicationClass extends Application {
 
     private static final int REQ_ENABLE_BT = 0;
     public boolean mBtAdapterEnabled = false;
@@ -60,6 +65,14 @@ public class SensorTagApplicationClass extends SugarApp {
         }
 
         startBluetoothLeService();
+
+        /* Inicializar parse */
+        ParseObject.registerSubclass(SensorData.class);
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "dUM5zwslG7vpahUzQJhYhr3xy3PVMDjnBrTSKlvu", "qydzIz37DCNaxlUEtjru8Cs4qHh6wjE9tqgfWg0c");
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+        ParseACL.setDefaultACL(defaultACL, true);
 
         super.onCreate();
 
