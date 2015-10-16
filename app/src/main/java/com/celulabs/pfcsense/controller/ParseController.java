@@ -3,6 +3,7 @@ package com.celulabs.pfcsense.controller;
 import android.content.Context;
 
 import com.celulabs.pfcsense.model.BarometerData;
+import com.celulabs.pfcsense.model.DeviceInfo;
 import com.celulabs.pfcsense.model.HumidityData;
 import com.celulabs.pfcsense.model.LuxometerData;
 import com.celulabs.pfcsense.model.SensorData;
@@ -56,6 +57,7 @@ public class ParseController {
      * Conforme se vayan agregando clases al modelo será necesario añadirlas en este método
      */
     private void registerSubclasses() {
+        ParseObject.registerSubclass(DeviceInfo.class);
         ParseObject.registerSubclass(SensorInfo.class);
         ParseObject.registerSubclass(SensorData.class);
         ParseObject.registerSubclass(TemperatureData.class);

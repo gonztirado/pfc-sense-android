@@ -1,6 +1,7 @@
 package com.celulabs.pfcsense.controller;
 
 import com.celulabs.pfcsense.model.BarometerData;
+import com.celulabs.pfcsense.model.DeviceInfo;
 import com.celulabs.pfcsense.model.HumidityData;
 import com.celulabs.pfcsense.model.LuxometerData;
 import com.celulabs.pfcsense.model.SensorData;
@@ -47,6 +48,11 @@ public class SensorDataController {
      * @param deviceModel nombre del modelo del terminal
      */
     public void setCurrenDeviceInfo(String deviceId, String deviceModel) {
+        DeviceInfo deviceInfo = new DeviceInfo();
+        deviceInfo.setDeviceId(deviceId);
+        deviceInfo.setDeviceModel(deviceModel);
+        deviceInfo.createOrUpdate();
+
         currentSensorInfo.setDeviceId(deviceId);
         currentSensorInfo.setDeviceModel(deviceModel);
     }
@@ -58,17 +64,15 @@ public class SensorDataController {
      * @param sensorName nombre descriptivo del sensor
      */
     public void setCurrentSensorInfo(String sensorId, String sensorName) {
-        if (currentSensorInfo.getSensorId() != sensorId) {
-            SensorInfo sensorInfo = new SensorInfo();
-            sensorInfo.setDeviceId(currentSensorInfo.getDeviceId());
-            sensorInfo.setDeviceModel(currentSensorInfo.getDeviceModel());
-            sensorInfo.setSensorId(sensorId);
-            sensorInfo.setSensorName(sensorName);
+        SensorInfo sensorInfo = new SensorInfo();
+        sensorInfo.setDeviceId(currentSensorInfo.getDeviceId());
+        sensorInfo.setDeviceModel(currentSensorInfo.getDeviceModel());
+        sensorInfo.setSensorId(sensorId);
+        sensorInfo.setSensorName(sensorName);
 
-            /* Guardamos el sensor contectado */
-            currentSensorInfo = sensorInfo;
-            currentSensorInfo.saveInBackground();
-        }
+        /* Guardamos el sensor contectado */
+        currentSensorInfo = sensorInfo;
+        currentSensorInfo.createOrUpdate();
     }
 
     /**
