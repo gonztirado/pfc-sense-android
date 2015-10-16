@@ -1,68 +1,64 @@
 package com.celulabs.pfcsense.model;
 
-import com.orm.SugarRecord;
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+
+import java.util.Date;
 
 /**
  * Modelo de los datos recopilados por los diferentes sensores de temperatura
  *
  * @author gonztirado
  */
-public class SensorData extends SugarRecord<SensorData> {
+@ParseClassName("SensorData")
+public class SensorData extends ParseObject {
 
-    String sensorId;
-    double temperature;
-    int timestamp;
-    double latitude;
-    double longitude;
+    static final String PROPERTY_VALUE = "value";
+    static final String PROPERTY_TIMESTAMP = "timestamp";
+    static final String PROPERTY_TIMESTAMP_DATE = "timestampDate";
 
-    public String getSensorId() {
-        return sensorId;
+    public void setSensorInfo(SensorInfo sensorInfo) {
+        if (sensorInfo != null) {
+            put(SensorInfo.PROPERTY_DEVICE_ID, sensorInfo.getDeviceId());
+            put(SensorInfo.PROPERTY_DEVICE_MODEL, sensorInfo.getDeviceModel());
+            put(SensorInfo.PROPERTY_SENSOR_ID, sensorInfo.getSensorId());
+            put(SensorInfo.PROPERTY_SENSOR_NAME, sensorInfo.getSensorName());
+        }
     }
 
-    public void setSensorId(String sensorId) {
-        this.sensorId = sensorId;
+    public SensorInfo getSensorInfo() {
+        SensorInfo sensorInfo = new SensorInfo();
+        sensorInfo.setDeviceId(getString(SensorInfo.PROPERTY_DEVICE_ID));
+        sensorInfo.setDeviceModel(getString(SensorInfo.PROPERTY_DEVICE_MODEL));
+        sensorInfo.setSensorId(getString(SensorInfo.PROPERTY_SENSOR_ID));
+        sensorInfo.setSensorName(getString(SensorInfo.PROPERTY_SENSOR_NAME));
+
+        return sensorInfo;
     }
 
-    public double getTemperature() {
-        return temperature;
+    public double getValue() {
+        return getDouble(PROPERTY_VALUE);
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public void setValue(double temperature) {
+        put(PROPERTY_VALUE, temperature);
     }
 
-    public int getTimestamp() {
-        return timestamp;
+    public long getTimestamp() {
+        return getLong(PROPERTY_TIMESTAMP);
     }
 
-    public void setTimestamp(int timestamp) {
-        this.timestamp = timestamp;
+    public Date getDatetime() {
+        return getDate(PROPERTY_TIMESTAMP_DATE);
     }
 
-    public double getLatitude() {
-        return latitude;
+    public void setTimestamp(long timestamp) {
+        put(PROPERTY_TIMESTAMP, timestamp);
+        put(PROPERTY_TIMESTAMP_DATE, new Date(timestamp));
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    @Override
-    public String toString() {
-        return "SensorData{" +
-                "sensorId='" + sensorId + '\'' +
-                ", temperature=" + temperature +
-                ", timestamp=" + timestamp +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+    public void setTimestampDate(Date timestampDate) {
+        put(PROPERTY_TIMESTAMP_DATE, timestampDate);
+        put(PROPERTY_TIMESTAMP, timestampDate != null ? timestampDate.getTime() : 0);
     }
 }

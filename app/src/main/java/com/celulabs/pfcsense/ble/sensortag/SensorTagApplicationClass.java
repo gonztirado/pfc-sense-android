@@ -1,5 +1,6 @@
 package com.celulabs.pfcsense.ble.sensortag;
 
+import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -9,14 +10,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.IBinder;
+import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.util.CustomToast;
-import com.orm.SugarApp;
+import com.celulabs.pfcsense.controller.ParseController;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
-public class SensorTagApplicationClass extends SugarApp {
+public class SensorTagApplicationClass extends Application {
 
     private static final int REQ_ENABLE_BT = 0;
     public boolean mBtAdapterEnabled = false;
@@ -61,9 +65,20 @@ public class SensorTagApplicationClass extends SugarApp {
 
         startBluetoothLeService();
 
+        /* Inicializar parse */
+        ParseController.getInstance().initApp(this);
+
+        /* Inicializamos modelo de dispositivo */
+        TelephonyManager mngr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        String deviceId = mngr.getDeviceId();
+        String deviceModel = Build.MANUFACTURER + " " + Build.MODEL;
+        SensorDataController.getInstance().setCurrenDeviceInfo(deviceId, deviceModel);
+
         super.onCreate();
 
     }
+
+
 
 /*
     @Override

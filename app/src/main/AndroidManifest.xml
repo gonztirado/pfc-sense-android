@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     
     <uses-sdk
         android:minSdkVersion="18"
@@ -25,11 +26,6 @@
         android:icon="@drawable/sense_icon"
         android:theme="@android:style/Theme.Holo.Light"
         android:name="com.celulabs.pfcsense.ble.sensortag.SensorTagApplicationClass" >
-
-        <meta-data android:name="DATABASE" android:value="pdf_sense.db" />
-        <meta-data android:name="VERSION" android:value="2" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.celulabs.pfcsense.model" />
 
         <service
             android:name="com.celulabs.pfcsense.ble.common.BluetoothLeService"
