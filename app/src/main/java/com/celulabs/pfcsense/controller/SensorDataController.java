@@ -54,8 +54,17 @@ public class SensorDataController {
      * @param sensorName nombre descriptivo del sensor
      */
     public void setCurrentSensorInfo(String sensorId, String sensorName) {
-        currentSensorInfo.setSensorId(sensorId);
-        currentSensorInfo.setSensorName(sensorName);
+        if (currentSensorInfo.getSensorId() != sensorId) {
+            SensorInfo sensorInfo = new SensorInfo();
+            sensorInfo.setDeviceId(currentSensorInfo.getDeviceId());
+            sensorInfo.setDeviceModel(currentSensorInfo.getDeviceModel());
+            sensorInfo.setSensorId(sensorId);
+            sensorInfo.setSensorName(sensorName);
+
+            /* Guardamos el sensor contectado */
+            currentSensorInfo = sensorInfo;
+            currentSensorInfo.saveInBackground();
+        }
     }
 
     public void addTemperature(double value) {

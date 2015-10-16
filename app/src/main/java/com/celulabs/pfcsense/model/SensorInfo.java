@@ -11,40 +11,47 @@ import com.parse.ParseObject;
 @ParseClassName("SensorInfo")
 public class SensorInfo extends ParseObject {
 
-    String deviceId;
-    String deviceModel;
-    String sensorId;
-    String sensorName;
+    static final String PROPERTY_DEVICE_ID = "deviceId";
+    static final String PROPERTY_DEVICE_MODEL = "deviceModel";
+    static final String PROPERTY_SENSOR_ID = "sensorId";
+    static final String PROPERTY_SENSOR_NAME = "sensorName";
+
+    public SensorInfo() {
+        setDeviceId("");
+        setDeviceModel("");
+        setSensorId("");
+        setSensorName("");
+    }
 
     public String getDeviceId() {
-        return deviceId;
+        return getString(PROPERTY_DEVICE_ID);
     }
 
     public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+        put(PROPERTY_DEVICE_ID, deviceId);
     }
 
     public String getDeviceModel() {
-        return deviceModel;
+        return getString(PROPERTY_DEVICE_MODEL);
     }
 
     public void setDeviceModel(String deviceModel) {
-        this.deviceModel = deviceModel;
+        put(PROPERTY_DEVICE_MODEL, deviceModel);
     }
 
     public String getSensorId() {
-        return sensorId;
+        return getString(PROPERTY_SENSOR_ID);
     }
 
     public void setSensorId(String sensorId) {
-        this.sensorId = sensorId;
+        put(PROPERTY_SENSOR_ID, sensorId);
     }
 
     public String getSensorName() {
-        return sensorName;
+        return getString(PROPERTY_SENSOR_NAME);
     }
 
     public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
+        put(PROPERTY_SENSOR_NAME, sensorName);
     }
 }
