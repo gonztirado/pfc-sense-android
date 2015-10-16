@@ -27,6 +27,7 @@ import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.HCIDefines;
 import com.celulabs.pfcsense.ble.common.HelpView;
 import com.celulabs.pfcsense.ble.util.CustomToast;
+import com.celulabs.pfcsense.controller.SensorDataController;
 
 import java.io.File;
 import java.io.IOException;
@@ -282,6 +283,10 @@ public class MainActivity extends ViewPagerActivity {
 		mDeviceIntent = new Intent(this, DeviceActivity.class);
 		mDeviceIntent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
 		startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
+
+		/* Seteamos en el controlador de SensorData la información del sensor activo */
+		if (mBluetoothDevice != null)
+			SensorDataController.getInstance().setCurrentSensorInfo(mBluetoothDevice.getAddress(), mBluetoothDevice.getName());
 	}
 
 	private void stopDeviceActivity() {

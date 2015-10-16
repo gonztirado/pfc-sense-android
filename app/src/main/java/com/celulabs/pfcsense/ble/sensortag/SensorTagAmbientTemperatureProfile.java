@@ -94,7 +94,7 @@ public class SensorTagAmbientTemperatureProfile extends GenericBluetoothProfile 
 			this.tRow.sl1.addValue((float)temperatureValue);
 
             /* Añadimos valor de temperatura al controlador */
-            SensorDataController.getInstance().addSensorValue(temperatureValue);
+			SensorDataController.getInstance().addTemperature(temperatureValue);
 		}
 	}
 	public static boolean isCorrectService(BluetoothGattService service) {
