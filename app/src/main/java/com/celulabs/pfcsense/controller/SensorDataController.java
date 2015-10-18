@@ -85,7 +85,7 @@ public class SensorDataController {
         addSensorValue(data, value);
 
         // FIXME
-        DucksboardController.getInstance().sendValue(data.getValue(), data.getTimestamp());
+        DucksboardController.getInstance().putTemperatureValue(data.getValue(), data.getTimestamp());
     }
 
     /**

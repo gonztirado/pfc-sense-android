@@ -1,14 +1,11 @@
 package com.celulabs.pfcsense.controller;
 
-import android.util.Log;
-
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
-import java.io.IOException;
+import org.json.JSONObject;
 
 /**
  * Controlador de envío de datos al dashboard de Ducksboard
@@ -19,6 +16,11 @@ public class DucksboardController {
 
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
+    public static final String API_KEY = "dUpDbnYxWG1hdlFPejVBUXhPaXBrTXpBd1phbzBXeUZ4VlNlamludXhqQnFpZnplMEQ6Z2FuenUxM0dU";
+    public static final String JSON_PARAM_TIMESTAMP = "timestamp";
+    public static final String JSON_PARAM_VALUE = "value";
+    public static final String API_PUSH_URL = "https://push.ducksboard.com/v/";
+    public static final String WIDGET_VALUE_TEMPERATURA = "730979";
 
 
     private static DucksboardController ourInstance = new DucksboardController();
@@ -36,30 +38,31 @@ public class DucksboardController {
     private DucksboardController() {
     }
 
-    public void sendValue(Double value, long timepstamp) {
+    public void putTemperatureValue(Double value, long timepstamp) {
+        putDashboardValue(WIDGET_VALUE_TEMPERATURA, value, timepstamp);
+    }
 
-        final String url = "https://push.ducksboard.com/v/730979";
-        final String json = "{\n" +
-                "    \"timestamp\": " + timepstamp + ",\n" +
-                "    \"value\": " + value + "\n" +
-                "  }";
-
+    public void putDashboardValue(final String widgetID, final double value, final long timestamp) {
         Thread sendThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpClient _httpClient = new OkHttpClient();
-                RequestBody body = RequestBody.create(JSON, json);
-                Request request = new Request.Builder()
-                        .url(url)
-                        .post(body)
-                        .header("Authorization", "Basic dUpDbnYxWG1hdlFPejVBUXhPaXBrTXpBd1phbzBXeUZ4VlNlamludXhqQnFpZnplMEQ6Z2FuenUxM0dU")
-                        .build();
                 try {
-                    Response response = _httpClient.newCall(request).execute();
-                    String responseString = response.body().string();
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put(JSON_PARAM_VALUE, value);
+                    jsonObject.put(JSON_PARAM_TIMESTAMP, timestamp);
+                    String json = jsonObject.toString();
+                    String url = API_PUSH_URL + widgetID;
 
-                    Log.d("DucksboardController", "send to Ducksboard response " + response);
-                } catch (IOException e) {
+                    OkHttpClient _httpClient = new OkHttpClient();
+                    RequestBody body = RequestBody.create(JSON, json);
+                    Request request = new Request.Builder()
+                            .url(url)
+                            .post(body)
+                            .header("Authorization", "Basic " + API_KEY)
+                            .build();
+
+                    _httpClient.newCall(request).execute();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
