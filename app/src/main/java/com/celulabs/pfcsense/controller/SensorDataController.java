@@ -83,8 +83,6 @@ public class SensorDataController {
     public void addTemperatureValue(double value) {
         TemperatureData data = new TemperatureData();
         addSensorValue(data, value);
-
-        // FIXME
         DucksboardController.getInstance().putTemperatureValue(data.getValue(), data.getTimestamp());
     }
 
@@ -94,7 +92,9 @@ public class SensorDataController {
      * @param value
      */
     public void addTemperatureIRValue(double value) {
-        addSensorValue(new TemperatureIRData(), value);
+        TemperatureIRData data = new TemperatureIRData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().putTemperatureIRValue(data.getValue(), data.getTimestamp());
     }
 
     /**
@@ -103,7 +103,9 @@ public class SensorDataController {
      * @param value
      */
     public void addBarometerValue(double value) {
-        addSensorValue(new BarometerData(), value);
+        BarometerData data = new BarometerData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().putBarometerValue(data.getValue(), data.getTimestamp());
     }
 
     /**
@@ -112,7 +114,9 @@ public class SensorDataController {
      * @param value
      */
     public void addHumidityValue(double value) {
-        addSensorValue(new HumidityData(), value);
+        HumidityData data = new HumidityData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().putHumidityValue(data.getValue(), data.getTimestamp());
     }
 
     /**
@@ -121,7 +125,9 @@ public class SensorDataController {
      * @param value
      */
     public void addLuxometerValue(double value) {
-        addSensorValue(new LuxometerData(), value);
+        LuxometerData data = new LuxometerData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().putLuxometerValue(data.getValue(), data.getTimestamp());
     }
 
     /**
