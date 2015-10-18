@@ -157,7 +157,7 @@ public class SensorTagBarometerProfile extends GenericBluetoothProfile {
 			//mBarValue.setText(msg);
 
 			/* Añadimos valor de presión barométrica al controlador */
-			SensorDataController.getInstance().addBarometerValue(barometerValue);
+			SensorDataController.getInstance().addBarometerValue(barometerValue / 100);
 		}
 	}
 	
