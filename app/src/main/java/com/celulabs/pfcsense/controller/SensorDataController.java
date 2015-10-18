@@ -81,7 +81,11 @@ public class SensorDataController {
      * @param value
      */
     public void addTemperatureValue(double value) {
-        addSensorValue(new TemperatureData(), value);
+        TemperatureData data = new TemperatureData();
+        addSensorValue(data, value);
+
+        // FIXME
+        DucksboardController.getInstance().sendValue(data.getValue(), data.getTimestamp());
     }
 
     /**
