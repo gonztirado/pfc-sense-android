@@ -1,63 +1,4 @@
-/**************************************************************************************************
-  Filename:       MainActivity.java
-  Revised:        $Date: Wed Apr 22 13:01:34 2015 +0200$
-  Revision:       $Revision: 599e5650a33a4a142d060c959561f9e9b0d88146$
-
-  Copyright (c) 2013 - 2014 Texas Instruments Incorporated
-
-  All rights reserved not granted herein.
-  Limited License. 
-
-  Texas Instruments Incorporated grants a world-wide, royalty-free,
-  non-exclusive license under copyrights and patents it now or hereafter
-  owns or controls to make, have made, use, import, offer to sell and sell ("Utilize")
-  this software subject to the terms herein.  With respect to the foregoing patent
-  license, such license is granted  solely to the extent that any such patent is necessary
-  to Utilize the software alone.  The patent license shall not apply to any combinations which
-  include this software, other than combinations with devices manufactured by or for TI ('TI Devices').
-  No hardware patent is licensed hereunder.
-
-  Redistributions must preserve existing copyright notices and reproduce this license (including the
-  above copyright notice and the disclaimer and (if applicable) source code license limitations below)
-  in the documentation and/or other materials provided with the distribution
-
-  Redistribution and use in binary form, without modification, are permitted provided that the following
-  conditions are met:
-
-    * No reverse engineering, decompilation, or disassembly of this software is permitted with respect to any
-      software provided in binary form.
-    * any redistribution and use are licensed by TI for use only with TI Devices.
-    * Nothing shall obligate TI to provide you with source code for the software licensed and provided to you in object code.
-
-  If software source code is provided to you, modification and redistribution of the source code are permitted
-  provided that the following conditions are met:
-
-    * any redistribution and use of the source code, including any resulting derivative works, are licensed by
-      TI for use only with TI Devices.
-    * any redistribution and use of any object code compiled from the source code and any resulting derivative
-      works, are licensed by TI for use only with TI Devices.
-
-  Neither the name of Texas Instruments Incorporated nor the names of its suppliers may be used to endorse or
-  promote products derived from this software without specific prior written permission.
-
-  DISCLAIMER.
-
-  THIS SOFTWARE IS PROVIDED BY TI AND TI'S LICENSORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
-  BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-  IN NO EVENT SHALL TI AND TI'S LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
-  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-  POSSIBILITY OF SUCH DAMAGE.
-
-
- **************************************************************************************************/
 package com.celulabs.pfcsense.ble.sensortag;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -74,7 +15,6 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-// import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -86,17 +26,24 @@ import com.celulabs.pfcsense.ble.common.BleDeviceInfo;
 import com.celulabs.pfcsense.ble.common.BluetoothLeService;
 import com.celulabs.pfcsense.ble.common.HCIDefines;
 import com.celulabs.pfcsense.ble.common.HelpView;
-import com.celulabs.pfcsense.util.CustomToast;
+import com.celulabs.pfcsense.ble.util.CustomToast;
+import com.celulabs.pfcsense.controller.SensorDataController;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends ViewPagerActivity {
 	// Log
 	// private static final String TAG = "MainActivity";
 
 	// URLs
-	private static final Uri URL_FORUM = Uri
-	    .parse("http://e2e.ti.com/support/low_power_rf/default.aspx?DCMP=hpa_hpa_community&HQS=NotApplicable+OT+lprf-forum");
-	private static final Uri URL_STHOME = Uri
-	    .parse("http://www.ti.com/ww/en/wireless_connectivity/sensortag/index.shtml?INTC=SensorTagGatt&HQS=sensortag");
+	private static final Uri URL_CODE_REPOSITORY = Uri
+			.parse("https://bitbucket.org/celulabs/pfc-sense-android");
+	private static final Uri URL_PROJECT_THOME = Uri
+			.parse("https://www.gitbook.com/read/book/gonztirado/pfc-sense-doc?license=62b146792aaf");
 
 	// Requests to other activities
 	private static final int REQ_ENABLE_BT = 0;
@@ -150,11 +97,11 @@ public class MainActivity extends ViewPagerActivity {
 
 		// Create the fragments and add them to the view pager and tabs
 		mScanView = new ScanView();
-		mSectionsPagerAdapter.addSection(mScanView, "BLE Device List");
+		mSectionsPagerAdapter.addSection(mScanView, "Lista de sensores");
 		
 		HelpView hw = new HelpView();
 		hw.setParameters("help_scan.html", R.layout.fragment_help, R.id.webpage);
-		mSectionsPagerAdapter.addSection(hw, "Help");
+		mSectionsPagerAdapter.addSection(hw, "Ayuda");
 
 		// Register the BroadcastReceiver
 		mFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
@@ -194,10 +141,10 @@ public class MainActivity extends ViewPagerActivity {
 			onBluetooth();
 			break;
 		case R.id.opt_e2e:
-			onUrl(URL_FORUM);
+			onUrl(URL_CODE_REPOSITORY);
 			break;
 		case R.id.opt_sthome:
-			onUrl(URL_STHOME);
+			onUrl(URL_PROJECT_THOME);
 			break;
 		case R.id.opt_license:
 			onLicense();
@@ -206,7 +153,7 @@ public class MainActivity extends ViewPagerActivity {
 			onAbout();
 			break;
 		case R.id.opt_exit:
-			Toast.makeText(this, "Exit...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Saliendo...", Toast.LENGTH_SHORT).show();
 			finish();
 			break;
 		default:
@@ -336,6 +283,10 @@ public class MainActivity extends ViewPagerActivity {
 		mDeviceIntent = new Intent(this, DeviceActivity.class);
 		mDeviceIntent.putExtra(DeviceActivity.EXTRA_DEVICE, mBluetoothDevice);
 		startActivityForResult(mDeviceIntent, REQ_DEVICE_ACT);
+
+		/* Seteamos en el controlador de SensorData la información del sensor activo */
+		if (mBluetoothDevice != null)
+			SensorDataController.getInstance().setCurrentSensorInfo(mBluetoothDevice.getAddress(), mBluetoothDevice.getName());
 	}
 
 	private void stopDeviceActivity() {
@@ -350,11 +301,11 @@ public class MainActivity extends ViewPagerActivity {
 		setBusy(true);
 		mBluetoothDevice = mDeviceInfoList.get(pos).getBluetoothDevice();
 		if (mConnIndex == NO_DEVICE) {
-			mScanView.setStatus("Connecting");
+			mScanView.setStatus("Conectando");
 			mConnIndex = pos;
 			onConnect();
 		} else {
-			mScanView.setStatus("Disconnecting");
+			mScanView.setStatus("Desconectando");
 			if (mConnIndex != NO_DEVICE) {
 				mBluetoothLeService.disconnect(mBluetoothDevice.getAddress());
 			}
@@ -440,9 +391,9 @@ public class MainActivity extends ViewPagerActivity {
 		mDeviceInfoList.add(device);
 		mScanView.notifyDataSetChanged();
 		if (mNumDevs > 1)
-			mScanView.setStatus(mNumDevs + " devices");
+			mScanView.setStatus(mNumDevs + " sensores");
 		else
-			mScanView.setStatus("1 device");
+			mScanView.setStatus("1 sensor");
 	}
 
 	private boolean deviceInfoExists(String address) {
@@ -546,7 +497,7 @@ public class MainActivity extends ViewPagerActivity {
 					setBusy(false);
 					startDeviceActivity();
 				} else
-					setError("Connect failed. Status: " + status);
+					setError("Fallo en conexión. Status: " + status);
 			} else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
 				// GATT disconnect
 				int status = intent.getIntExtra(BluetoothLeService.EXTRA_STATUS,
@@ -554,10 +505,10 @@ public class MainActivity extends ViewPagerActivity {
 				stopDeviceActivity();
 				if (status == BluetoothGatt.GATT_SUCCESS) {
 					setBusy(false);
-					mScanView.setStatus(mBluetoothDevice.getName() + " disconnected",
-					    STATUS_DURATION);
+					mScanView.setStatus(mBluetoothDevice.getName() + " desconectado",
+							STATUS_DURATION);
 				} else {
-					setError("Disconnect Status: " + HCIDefines.hciErrorCodeStrings.get(status));
+					setError("Status desconexión: " + HCIDefines.hciErrorCodeStrings.get(status));
 				}
 				mConnIndex = NO_DEVICE;
 				mBluetoothLeService.close();

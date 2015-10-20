@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.example.ti.ble.sensortag"
+        applicationId "com.celulabs.pfcsense"
         minSdkVersion 18
         targetSdkVersion 21
     }
@@ -28,4 +28,7 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile files('libs/org.eclipse.paho.android.service-1.0.2.jar')
     compile files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.parse:parse-android:1.+'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
 }
