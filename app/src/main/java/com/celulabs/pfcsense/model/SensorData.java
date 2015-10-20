@@ -13,9 +13,9 @@ import java.util.Date;
 @ParseClassName("SensorData")
 public class SensorData extends ParseObject {
 
-    static final String PROPERTY_VALUE = "value";
-    static final String PROPERTY_TIMESTAMP = "timestamp";
-    static final String PROPERTY_TIMESTAMP_DATE = "timestampDate";
+    public static final String PROPERTY_VALUE = "value";
+    public static final String PROPERTY_TIMESTAMP = "timestamp";
+    public static final String PROPERTY_TIMESTAMP_DATE = "timestampDate";
 
     public void setSensorInfo(SensorInfo sensorInfo) {
         if (sensorInfo != null) {

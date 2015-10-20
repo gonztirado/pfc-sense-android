@@ -83,7 +83,7 @@ public class SensorDataController {
     public void addTemperatureValue(double value) {
         TemperatureData data = new TemperatureData();
         addSensorValue(data, value);
-        DucksboardController.getInstance().putTemperatureValue(data.getValue(), data.getTimestamp());
+        DucksboardController.getInstance().pushTemperatureData(data);
     }
 
     /**
@@ -94,7 +94,7 @@ public class SensorDataController {
     public void addTemperatureIRValue(double value) {
         TemperatureIRData data = new TemperatureIRData();
         addSensorValue(data, value);
-        DucksboardController.getInstance().putTemperatureIRValue(data.getValue(), data.getTimestamp());
+        DucksboardController.getInstance().pushTemperatureIRData(data);
     }
 
     /**
@@ -105,7 +105,7 @@ public class SensorDataController {
     public void addBarometerValue(double value) {
         BarometerData data = new BarometerData();
         addSensorValue(data, value);
-        DucksboardController.getInstance().putBarometerValue(data.getValue(), data.getTimestamp());
+        DucksboardController.getInstance().pushBarometerData(data);
     }
 
     /**
@@ -116,7 +116,7 @@ public class SensorDataController {
     public void addHumidityValue(double value) {
         HumidityData data = new HumidityData();
         addSensorValue(data, value);
-        DucksboardController.getInstance().putHumidityValue(data.getValue(), data.getTimestamp());
+        DucksboardController.getInstance().pushHumidityData(data);
     }
 
     /**
@@ -127,7 +127,7 @@ public class SensorDataController {
     public void addLuxometerValue(double value) {
         LuxometerData data = new LuxometerData();
         addSensorValue(data, value);
-        DucksboardController.getInstance().putLuxometerValue(data.getValue(), data.getTimestamp());
+        DucksboardController.getInstance().pushLuxometerData(data);
     }
 
     /**
@@ -142,4 +142,5 @@ public class SensorDataController {
         sensorData.setTimestamp(System.currentTimeMillis());
         sensorData.saveInBackground();
     }
+
 }

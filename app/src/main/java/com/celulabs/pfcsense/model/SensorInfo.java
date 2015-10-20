@@ -16,11 +16,11 @@ import java.util.List;
 @ParseClassName("SensorInfo")
 public class SensorInfo extends ParseObject {
 
-    static final String PROPERTY_DEVICE_ID = "deviceId";
-    static final String PROPERTY_DEVICE_MODEL = "deviceModel";
-    static final String PROPERTY_SENSOR_ID = "sensorId";
-    static final String PROPERTY_SENSOR_NAME = "sensorName";
-    static final String PROPERTY_NUM_CONNECTIONS = "numConnections";
+    public static final String PROPERTY_DEVICE_ID = DeviceInfo.PROPERTY_DEVICE_ID;
+    public static final String PROPERTY_DEVICE_MODEL = DeviceInfo.PROPERTY_DEVICE_MODEL;
+    public static final String PROPERTY_SENSOR_ID = "sensorId";
+    public static final String PROPERTY_SENSOR_NAME = "sensorName";
+    public static final String PROPERTY_NUM_CONNECTIONS = "numConnections";
 
     /**
      * Crea o actualiza el objeto sensor info tomando como clave única 'deviceId + sensorId'
