@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.celulabs.pfcsense.model.BarometerData;
 import com.celulabs.pfcsense.model.DeviceInfo;
+import com.celulabs.pfcsense.model.DucksboardSettings;
 import com.celulabs.pfcsense.model.HumidityData;
 import com.celulabs.pfcsense.model.LuxometerData;
 import com.celulabs.pfcsense.model.SensorData;
@@ -65,6 +66,7 @@ public class ParseController {
         ParseObject.registerSubclass(BarometerData.class);
         ParseObject.registerSubclass(HumidityData.class);
         ParseObject.registerSubclass(LuxometerData.class);
+        ParseObject.registerSubclass(DucksboardSettings.class);
     }
 
     /**

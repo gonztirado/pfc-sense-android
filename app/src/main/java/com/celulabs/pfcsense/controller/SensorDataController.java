@@ -73,6 +73,9 @@ public class SensorDataController {
         /* Guardamos el sensor contectado */
         currentSensorInfo = sensorInfo;
         currentSensorInfo.createOrUpdate();
+
+        /* Inicializamos configuración de sensor en Ducksboar */
+        DucksboardController.getInstance().initDuckboardSettings(currentSensorInfo);
     }
 
     /**
