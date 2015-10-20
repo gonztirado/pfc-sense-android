@@ -52,8 +52,7 @@ public class DucksboardController {
     }
 
     /**
-     * Envía al dashboard un dato de temperatura
-     *
+     * Envía al dashboard un dato de temperatura ambiental
      * @param sensorData
      */
     public void pushTemperatureData(TemperatureData sensorData) {
@@ -61,27 +60,48 @@ public class DucksboardController {
         pushData(sensorData, WIDGET_GRAPHIC_TEMPERATURE);
     }
 
+    /**
+     * Envía al dashboard un dato de temperatura por infrarojos
+     *
+     * @param sensorData
+     */
     public void pushTemperatureIRData(SensorData sensorData) {
         pushData(sensorData, WIDGET_VALUE_TEMPERATURE_IR);
         pushData(sensorData, WIDGET_GRAPHIC_TEMPERATURE_IR);
     }
 
+    /**
+     * Envía al dashboard un dato de humedad
+     * @param sensorData
+     */
     public void pushHumidityData(SensorData sensorData) {
         pushData(sensorData, WIDGET_VALUE_HUMIDITY);
         pushData(sensorData, WIDGET_GRAPHIC_HUMIDITY);
     }
 
+    /**
+     * Envía al dashboard un dato de presión atmosférica
+     * @param sensorData
+     */
     public void pushBarometerData(SensorData sensorData) {
         pushData(sensorData, WIDGET_VALUE_BAROMETER);
         pushData(sensorData, WIDGET_GRAPHIC_BAROMETER);
     }
 
+    /**
+     * Envía al dashboard un dato de luminosidad ambiental
+     * @param sensorData
+     */
     public void pushLuxometerData(SensorData sensorData) {
         pushData(sensorData, WIDGET_VALUE_LUXOMETER);
         pushData(sensorData, WIDGET_GRAPHIC_LUXOMETER);
     }
 
 
+    /**
+     * Envía al dashboard un dato de sensor
+     * @param sensorData
+     */
     private void pushData(SensorData sensorData, String widgetID) {
         JSONObject jsonObject = getJsonObject(sensorData);
         pushDashboardRequest(widgetID, jsonObject.toString());
@@ -99,6 +119,11 @@ public class DucksboardController {
     }
 
 
+    /**
+     * Realiza una petición de envío de datos al dashboard
+     * @param widgetID
+     * @param jsonRequest
+     */
     private void pushDashboardRequest(final String widgetID, final String jsonRequest) {
 
         Thread sendThread = new Thread(new Runnable() {
