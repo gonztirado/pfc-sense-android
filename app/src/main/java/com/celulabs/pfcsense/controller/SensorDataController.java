@@ -73,6 +73,9 @@ public class SensorDataController {
         /* Guardamos el sensor contectado */
         currentSensorInfo = sensorInfo;
         currentSensorInfo.createOrUpdate();
+
+        /* Inicializamos configuración de sensor en Ducksboar */
+        DucksboardController.getInstance().initDuckboardSettings(currentSensorInfo);
     }
 
     /**
@@ -81,7 +84,9 @@ public class SensorDataController {
      * @param value
      */
     public void addTemperatureValue(double value) {
-        addSensorValue(new TemperatureData(), value);
+        TemperatureData data = new TemperatureData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().pushTemperatureData(data);
     }
 
     /**
@@ -90,7 +95,9 @@ public class SensorDataController {
      * @param value
      */
     public void addTemperatureIRValue(double value) {
-        addSensorValue(new TemperatureIRData(), value);
+        TemperatureIRData data = new TemperatureIRData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().pushTemperatureIRData(data);
     }
 
     /**
@@ -99,7 +106,9 @@ public class SensorDataController {
      * @param value
      */
     public void addBarometerValue(double value) {
-        addSensorValue(new BarometerData(), value);
+        BarometerData data = new BarometerData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().pushBarometerData(data);
     }
 
     /**
@@ -108,7 +117,9 @@ public class SensorDataController {
      * @param value
      */
     public void addHumidityValue(double value) {
-        addSensorValue(new HumidityData(), value);
+        HumidityData data = new HumidityData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().pushHumidityData(data);
     }
 
     /**
@@ -117,7 +128,9 @@ public class SensorDataController {
      * @param value
      */
     public void addLuxometerValue(double value) {
-        addSensorValue(new LuxometerData(), value);
+        LuxometerData data = new LuxometerData();
+        addSensorValue(data, value);
+        DucksboardController.getInstance().pushLuxometerData(data);
     }
 
     /**
@@ -132,4 +145,5 @@ public class SensorDataController {
         sensorData.setTimestamp(System.currentTimeMillis());
         sensorData.saveInBackground();
     }
+
 }

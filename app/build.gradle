@@ -30,4 +30,5 @@ dependencies {
     compile files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
 }
