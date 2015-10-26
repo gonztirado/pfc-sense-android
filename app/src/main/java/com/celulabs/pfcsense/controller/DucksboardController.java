@@ -1,9 +1,13 @@
 package com.celulabs.pfcsense.controller;
 
+import com.celulabs.pfcsense.model.BarometerData;
 import com.celulabs.pfcsense.model.DucksboardSettings;
+import com.celulabs.pfcsense.model.HumidityData;
+import com.celulabs.pfcsense.model.LuxometerData;
 import com.celulabs.pfcsense.model.SensorData;
 import com.celulabs.pfcsense.model.SensorInfo;
 import com.celulabs.pfcsense.model.TemperatureData;
+import com.celulabs.pfcsense.model.TemperatureIRData;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -94,7 +98,7 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushTemperatureIRData(SensorData sensorData) {
+    public void pushTemperatureIRData(TemperatureIRData sensorData) {
         if (_settings != null) {
             _lastPushTemperatureIRValue = pushData(sensorData, _settings.getValueTemperatureIRWidgetID(), _lastPushTemperatureIRValue, _settings.getValuePushInterval());
             _lastPushTemperatureIRGraphic = pushData(sensorData, _settings.getGraphicTemperatureIRWidgetID(), _lastPushTemperatureIRGraphic, _settings.getGraphicPushInterval());
@@ -106,7 +110,7 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushHumidityData(SensorData sensorData) {
+    public void pushHumidityData(HumidityData sensorData) {
         if (_settings != null) {
             _lastPushHumidityValue = pushData(sensorData, _settings.getValueHumidityWidgetID(), _lastPushHumidityValue, _settings.getValuePushInterval());
             _lastPushHumidityGraphic = pushData(sensorData, _settings.getGraphicHumidityWidgetID(), _lastPushHumidityGraphic, _settings.getGraphicPushInterval());
@@ -118,7 +122,7 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushBarometerData(SensorData sensorData) {
+    public void pushBarometerData(BarometerData sensorData) {
         if (_settings != null) {
             _lastPushBarometerValue = pushData(sensorData, _settings.getValueBarometerWidgetID(), _lastPushBarometerValue, _settings.getValuePushInterval());
             _lastPushBarometerGraphic = pushData(sensorData, _settings.getGraphicBarometerWidgetID(), _lastPushBarometerGraphic, _settings.getGraphicPushInterval());
@@ -130,7 +134,7 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushLuxometerData(SensorData sensorData) {
+    public void pushLuxometerData(LuxometerData sensorData) {
         if (_settings != null) {
             _lastPushLuxometerValue = pushData(sensorData, _settings.getValueLuxometerWidgetID(), _lastPushLuxometerValue, _settings.getValuePushInterval());
             _lastPushLuxometerGraphic = pushData(sensorData, _settings.getGraphicLuxometerWidgetID(), _lastPushLuxometerGraphic, _settings.getGraphicPushInterval());
