@@ -1,9 +1,13 @@
 package com.celulabs.pfcsense.controller;
 
+import com.celulabs.pfcsense.model.BarometerData;
 import com.celulabs.pfcsense.model.DucksboardSettings;
+import com.celulabs.pfcsense.model.HumidityData;
+import com.celulabs.pfcsense.model.LuxometerData;
 import com.celulabs.pfcsense.model.SensorData;
 import com.celulabs.pfcsense.model.SensorInfo;
 import com.celulabs.pfcsense.model.TemperatureData;
+import com.celulabs.pfcsense.model.TemperatureIRData;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -30,6 +34,17 @@ public class DucksboardController {
     private static final String API_PUSH_URL = "https://push.ducksboard.com/v/";
 
     private DucksboardSettings _settings;
+
+    private long _lastPushTemperatureValue;
+    private long _lastPushTemperatureIRValue;
+    private long _lastPushHumidityValue;
+    private long _lastPushBarometerValue;
+    private long _lastPushLuxometerValue;
+    private long _lastPushTemperatureGraphic;
+    private long _lastPushTemperatureIRGraphic;
+    private long _lastPushHumidityGraphic;
+    private long _lastPushBarometerGraphic;
+    private long _lastPushLuxometerGraphic;
 
 
     private static DucksboardController ourInstance = new DucksboardController();
@@ -73,8 +88,8 @@ public class DucksboardController {
      */
     public void pushTemperatureData(TemperatureData sensorData) {
         if (_settings != null) {
-            pushData(sensorData, _settings.getValueTemperatureWidgetID());
-            pushData(sensorData, _settings.getGraphicTemperatureWidgetID());
+            _lastPushTemperatureValue = pushData(sensorData, _settings.getValueTemperatureWidgetID(), _lastPushTemperatureValue, _settings.getValuePushInterval());
+            _lastPushTemperatureGraphic = pushData(sensorData, _settings.getGraphicTemperatureWidgetID(), _lastPushTemperatureGraphic, _settings.getGraphicPushInterval());
         }
     }
 
@@ -83,10 +98,10 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushTemperatureIRData(SensorData sensorData) {
+    public void pushTemperatureIRData(TemperatureIRData sensorData) {
         if (_settings != null) {
-            pushData(sensorData, _settings.getValueTemperatureIRWidgetID());
-            pushData(sensorData, _settings.getGraphicTemperatureIRWidgetID());
+            _lastPushTemperatureIRValue = pushData(sensorData, _settings.getValueTemperatureIRWidgetID(), _lastPushTemperatureIRValue, _settings.getValuePushInterval());
+            _lastPushTemperatureIRGraphic = pushData(sensorData, _settings.getGraphicTemperatureIRWidgetID(), _lastPushTemperatureIRGraphic, _settings.getGraphicPushInterval());
         }
     }
 
@@ -95,10 +110,10 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushHumidityData(SensorData sensorData) {
+    public void pushHumidityData(HumidityData sensorData) {
         if (_settings != null) {
-            pushData(sensorData, _settings.getValueHumidityWidgetID());
-            pushData(sensorData, _settings.getGraphicHumidityWidgetID());
+            _lastPushHumidityValue = pushData(sensorData, _settings.getValueHumidityWidgetID(), _lastPushHumidityValue, _settings.getValuePushInterval());
+            _lastPushHumidityGraphic = pushData(sensorData, _settings.getGraphicHumidityWidgetID(), _lastPushHumidityGraphic, _settings.getGraphicPushInterval());
         }
     }
 
@@ -107,10 +122,10 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushBarometerData(SensorData sensorData) {
+    public void pushBarometerData(BarometerData sensorData) {
         if (_settings != null) {
-            pushData(sensorData, _settings.getValueBarometerWidgetID());
-            pushData(sensorData, _settings.getGraphicBarometerWidgetID());
+            _lastPushBarometerValue = pushData(sensorData, _settings.getValueBarometerWidgetID(), _lastPushBarometerValue, _settings.getValuePushInterval());
+            _lastPushBarometerGraphic = pushData(sensorData, _settings.getGraphicBarometerWidgetID(), _lastPushBarometerGraphic, _settings.getGraphicPushInterval());
         }
     }
 
@@ -119,23 +134,29 @@ public class DucksboardController {
      *
      * @param sensorData
      */
-    public void pushLuxometerData(SensorData sensorData) {
+    public void pushLuxometerData(LuxometerData sensorData) {
         if (_settings != null) {
-            pushData(sensorData, _settings.getValueLuxometerWidgetID());
-            pushData(sensorData, _settings.getGraphicLuxometerWidgetID());
+            _lastPushLuxometerValue = pushData(sensorData, _settings.getValueLuxometerWidgetID(), _lastPushLuxometerValue, _settings.getValuePushInterval());
+            _lastPushLuxometerGraphic = pushData(sensorData, _settings.getGraphicLuxometerWidgetID(), _lastPushLuxometerGraphic, _settings.getGraphicPushInterval());
         }
     }
 
 
     /**
-     * Envía al dashboard un dato de sensor
+     * Intenta un envío push de datos al dashboard un dato de sensor
      *
      * @param sensorData
+     * @param widgetID
+     * @param lastPushTimestamp
+     * @param pushInterval
+     * @return devuelve la fecha en que se ha realizado la ultima petición push para esta gráfica
      */
-    private void pushData(SensorData sensorData, String widgetID) {
+    private long pushData(SensorData sensorData, String widgetID, long lastPushTimestamp, long pushInterval) {
         if ((sensorData != null) && (widgetID != null) && !widgetID.isEmpty()) {
             JSONObject jsonObject = getJsonObject(sensorData);
-            pushDashboardRequest(widgetID, jsonObject.toString());
+            return pushDashboardRequest(widgetID, jsonObject.toString(), lastPushTimestamp, pushInterval);
+        } else {
+            return lastPushTimestamp;
         }
     }
 
@@ -156,10 +177,14 @@ public class DucksboardController {
      *
      * @param widgetID
      * @param jsonRequest
+     * @param lastPushTimestamp
+     * @param pushInterval
      */
-    private void pushDashboardRequest(final String widgetID, final String jsonRequest) {
+    private long pushDashboardRequest(final String widgetID, final String jsonRequest, long lastPushTimestamp, long pushInterval) {
+        long currentTime = System.currentTimeMillis();
+        long nextPutAllowed = lastPushTimestamp + pushInterval;
 
-        if ((_settings != null) && (_settings.getApiKey() != null) && !_settings.getApiKey().isEmpty()) {
+        if ((currentTime >= nextPutAllowed) && (_settings != null) && (_settings.getApiKey() != null) && !_settings.getApiKey().isEmpty()) {
             final String apiKey = _settings.getApiKey();
 
             Thread sendThread = new Thread(new Runnable() {
@@ -182,6 +207,9 @@ public class DucksboardController {
                 }
             });
             sendThread.start();
+            return currentTime;
+        } else {
+            return lastPushTimestamp;
         }
     }
 }
