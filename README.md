@@ -1,27 +1,19 @@
 
-========= Monitorización de temperatura a través de termógrafos inalámbricos
+## Monitorización de temperatura a través de termógrafos inalámbricos
 
 ------------------------------------------------------------------
 
-
 ### ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA INFORMÁTICA
-
-
-
 
 ### INGENIERÍA TÉCNICA EN INFORMÁTICA DE SISTEMAS
 
 
-
-
 #### Realizado por 
-#### Gonzalo Tirado Granados
-
+Gonzalo Tirado Granados
 
 
 #### Dirigido por 
-#### Dr. Antonio J. Fernández Leiva
-
+Dr. Antonio J. Fernández Leiva
 
 
 #### Departamento ####
@@ -41,5 +33,5 @@ Lenguajes y Ciencias de la Computación
 
 **Panel de monitorización Sensortag 2**: https://public.ducksboard.com/LSAIBT60Z_SgXn1nBG00/
 
-**Panel de monitorización Invernadero**:https://app.ducksboard.com/#dashboard/id/71109
+**Panel de monitorización Invernadero**: https://public.ducksboard.com/4-cXZT9pAha_q0YlEVAw/
 
