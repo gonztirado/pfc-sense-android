@@ -1,50 +1,45 @@
 
-=========
-
-
-Monitorizaci髇 de temperatura a trav閟 de term骻rafos inal醡bricos
+========= Monitorizaci贸n de temperatura a trav茅s de term贸grafos inal谩mbricos
 
 ------------------------------------------------------------------
 
 
-### ESCUELA T蒀NICA SUPERIOR DE INGENIER虯 INFORM罷ICA
+### ESCUELA T脡CNICA SUPERIOR DE INGENIER脥A INFORM脕TICA
 
 
 
 
-### INGENIER虯 T蒀NICA EN INFORM罷ICA DE SISTEMAS
+### INGENIER脥A T脡CNICA EN INFORM脕TICA DE SISTEMAS
 
 
 
 
 #### Realizado por 
-####
-Gonzalo Tirado Granados
+#### Gonzalo Tirado Granados
 
 
 
 #### Dirigido por 
-####
-Dr. Antonio J. Fern醤dez Leiva
+#### Dr. Antonio J. Fern谩ndez Leiva
 
 
 
 #### Departamento ####
 
-Lenguajes y Ciencias de la Computaci髇
-###### M醠aga, noviembre de 2015 ######
+Lenguajes y Ciencias de la Computaci贸n
+###### M谩laga, noviembre de 2015 ######
 
 ------------------------------------------------------------
 
 **Memoria del proyecto**: https://www.gitbook.com/book/gonztirado/pfc-sense-doc/details
 
-**Presentaci髇**: https://prezi.com/ntrhdzyx8mbk/pfc-monitorizacion-de-temperatura-a-traves-de-termografos-inalambricos/
+**Presentaci贸n**: https://prezi.com/ntrhdzyx8mbk/pfc-monitorizacion-de-temperatura-a-traves-de-termografos-inalambricos/
 
-**Demostraci髇**: https://www.youtube.com/watch?v=z6xREHAXVi0
+**Demostraci贸n**: https://www.youtube.com/watch?v=z6xREHAXVi0
 
-**Panel de monitorizaci髇 Sensortag 1**: https://public.ducksboard.com/WV2sH2ZXQjExi1LIzz-g/
+**Panel de monitorizaci贸n Sensortag 1**: https://public.ducksboard.com/WV2sH2ZXQjExi1LIzz-g/
 
-**Panel de monitorizaci髇 Sensortag 2**: https://public.ducksboard.com/LSAIBT60Z_SgXn1nBG00/
+**Panel de monitorizaci贸n Sensortag 2**: https://public.ducksboard.com/LSAIBT60Z_SgXn1nBG00/
 
-**Panel de monitorizaci髇 Invernadero**:https://app.ducksboard.com/#dashboard/id/71109
+**Panel de monitorizaci贸n Invernadero**:https://app.ducksboard.com/#dashboard/id/71109
 
